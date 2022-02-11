@@ -5,8 +5,17 @@
     // myModal.addEventListener('shown.bs.modal', function () {
     // myInput.focus()
     // })
+
+    jQuery(window).load(function(){
+        jQuery('#empAddModal').modal('show').on('hide.bs.modal', function(e){
+        e.preventDefault();
+        });
+    });
+    
     
     var empAddModal = document.getElementById('empAddModal')
+
+    
 
     // empViewModal.addEventListener('show.bs.modal', function (event) {
     //     // Button that triggered the modal
@@ -41,7 +50,7 @@
 
         // modalTitle.textContent = 'New message to ' + recipient
         // modalBodyInput.value = recipient
-        floatingFirst.focus()
+        empAddModal.focus()
     })
 
     // empEditModal.addEventListener('show.bs.modal', function (event) {

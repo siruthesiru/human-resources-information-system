@@ -110,7 +110,7 @@
                 <label class="faded" for="floatingAddress">Address</label>
               </div>
 
-              <div class="col-lg-2" style="font-size: 100%; max-height: 58px;)">
+              <div class="col-lg-2" style="font-size: 100%; max-height: 58px;">
   
                 <div class="dropdown">
                   {{Form::select('sex', ['M' => 'Male', 'F' => 'Female'], $employee->sex, ['class' => 'btn btn-light btn-outline-grey dropdown-toggle filled border', 'type' => 'button', 'style' => 'height: 58px'])}}

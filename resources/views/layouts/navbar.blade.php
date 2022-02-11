@@ -114,6 +114,14 @@
 
 <link href="{{asset('css/app.css')}}" rel="stylesheet">
 
+@php
+  use App\Models\Department;
+  use App\Models\Branch;
+
+  $departments = App\Models\Department::all();
+  $branches = App\Models\Branch::all();
+@endphp
+
 <nav class="navbar navbar-expand-xxl navbar-dark" aria-label="Third navbar example" style="position:fixed ; top: 0 ; width : 100%; z-index:5; background-color: #017f36">
   <div class="container-fluid">
     <a class="navbar-brand" href="/dashboard" style="font-weight: bold; font-size: 20px">PLAS Human Resources</a>
@@ -128,32 +136,34 @@
         </li>
         <li class="nav-item">
           <a class="nav-link {{ Request::is('employees') ? 'active' : '' }}" href="/employees">Employees</a>
+
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="dropdown03" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-hidden="">Departments</a>
+          <a class="nav-link dropdown-toggle {{ Request::is('department') ? 'active' : '' }}" href="#" id="dropdown03" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-hidden="">Departments</a>
           <ul class="dropdown-menu" aria-labelledby="dropdown03" style="margin-top: 8px">
-            <li><a class="dropdown-item" href="#">Accounting</a></li>
-            <li><a class="dropdown-item" href="#">Engineering</a></li>
-            <li><a class="dropdown-item" href="#">Human Resources</a></li>
+
+            @foreach ($departments as $department)
+
+            <li><a class="dropdown-item" href="/departments/{{strtolower(str_replace(' ', '_', $department->name))}}">{{$department->name}}</a></li>
+
+            @endforeach
+
           </ul>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Branch/Location</a>
           <ul class="dropdown-menu" aria-labelledby="dropdown04" style="margin-top: 8px">
-            <li><a class="dropdown-item" href="/cebu">Cebu</a></li>
-            <li><a class="dropdown-item" href="/bohol">Bohol</a></li>
-            <li><a class="dropdown-item" href="/davao">Davao</a></li>
-            <li><a class="dropdown-item" href="/zamboanga">Zamboanga</a></li>
-            <li><a class="dropdown-item" href="/tacloban">Tacloban</a></li>
-            <li><a class="dropdown-item" href="/iloilo">IloIlo</a></li>
-            <li><a class="dropdown-item" href="/bacolod">Bacolod</a></li>
-            <li><a class="dropdown-item" href="/cagayan">Cagayan</a></li>
-            <li><a class="dropdown-item" href="/iligan">Iligan</a></li>
-            <li><a class="dropdown-item" href="/laguna">Laguna</a></li>
+
+            @foreach ($branches as $branch)
+
+            <li><a class="dropdown-item" href="/branch/{{strtolower(str_replace(' ', '', $branch->name))}}">{{$branch->name}}</a></li>
+
+            @endforeach
+            
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Logs</a>
+          <a class="nav-link" href="/logs">Logs</a>
         </li>
       </ul>
       <br>

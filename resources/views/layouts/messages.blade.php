@@ -1,10 +1,15 @@
 @if(count($errors) > 0)
     <div class="alert alert-danger" id="error">
-        @foreach($errors->all() as $key=>$error)
+
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+        <div>
+            @foreach($errors->all() as $key=>$error)
             
                 {{$error}}. 
             
-        @endforeach
+            @endforeach
+        </div>
+        
     </div>
 @endif
 

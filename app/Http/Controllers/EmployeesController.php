@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Employee;
 use App\Models\Employee as ModelsEmployee;
+use App\Models\EmploymentInfo as ModelsEmpInfo;
 
 class EmployeesController extends Controller
 {
@@ -16,19 +16,25 @@ class EmployeesController extends Controller
     public function index(Request $request)
     {
         // return ModelsEmployee::all();
+
         // $employees = ModelsEmployee::where('department', 'Lakers')->get();
         // $employees = ModelsEmployee::orderBy('lName', 'asc')->paginate(25);
 
-        $employees = ModelsEmployee::where([
+        // $employees = ModelsEmployee::with('getEmploymentInfo')->get();
+
+        $employees = ModelsEmployee::with('empInfo')->where([
             ['id', '!=', NULL],
             [function($query) use ($request) {
                 if ($term = $request->term) {
                     $query->orWhere('fName', 'LIKE', '%'.$term.'%')->get();
+                    $query->orWhere('lName', 'LIKE', '%'.$term.'%')->get();
                 }
             }]
         ])
-            ->orderBy('id', 'asc')
+            ->orderBy('lName', 'asc')
             ->paginate(25);
+
+        // dd($employees);
 
         return view('employees.index')->with('employees', $employees);
     }
@@ -59,18 +65,28 @@ class EmployeesController extends Controller
             'contactNum1' => 'required'
         ]);
 
-        $employee = new ModelsEmployee();
+        $employee = new ModelsEmployee;
+
         $employee->fName = $request->input('fName');
         $employee->mName = $request->input('mName');
         $employee->lName = $request->input('lName');
         $employee->bDate = $request->input('bDate');
         $employee->sex = $request->input('sex');
         $employee->address = $request->input('address');
-        $employee->contactNum1 = $request->input('contactNum1');
-        $employee->contactNum2 = $request->input('contactNum2');
+        $employee->contactNum1 = '0'.$request->input('contactNum1');
+        $employee->contactNum2 = '0'.$request->input('contactNum2');
         $employee->profilePicSrc = NULL;
+        $employee->department = 1;
+        $employee->branch = 1;
+
+        $matchThese = ['fName' => $employee->fName, 'lName' => $employee->lName];
 
         $employee->save();
+
+        $employeeID = ModelsEmployee::where($matchThese)->first();
+
+        EmploymentInfosController::store($request, $employeeID->id);
+        EmergencyContactsController::store($request, $employeeID->id);
 
         return redirect('/employees')->with('success', 'Employee Added!');
     }
@@ -81,7 +97,7 @@ class EmployeesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($emp_id)
+    public function show($id)
     {
 
     }

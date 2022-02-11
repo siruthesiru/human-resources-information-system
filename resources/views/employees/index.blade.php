@@ -3,48 +3,63 @@
 @section('content')
 
 <div>
+    @php
+    use App\Models\Department;
+    use App\Models\Branch;
+    use App\Models\Position;
+    use App\Models\EmploymentStatus;
 
-    <div class="row">
+    $departments = App\Models\Department::all();
+    $branches = App\Models\Branch::all();
+    $positions = App\Models\Position::all();
+    $statuses = App\Models\EmploymentStatus::all();
+    @endphp
+
+    <div class="row g-3">
        
         <h1 class="bold">EMPLOYEES</h1>
         <h6>Displaying all employees of PLAS Engineering and Enterprises</h6>
         
         <hr>
 
-        <div class="col-auto">
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#empAddModal" style="margin-bottom: 10px; margin-right: 5px">Add New Employee</button>
+        <div class="col-sm-auto">
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#empAddModal" style="margin-bottom: 10px;">Add New Employee</button>
         </div>
 
-        @include('employees.empAddModal')
+        <div class="col-sm">
+            <input class="btn-check" type="checkbox" data-bs-toggle="collapse" id="btn-check-outlined" autocomplete="off" data-bs-target="#collapseFilter">
+            <label class="btn btn-outline-secondary" for="btn-check-outlined" style="margin-bottom: 10px">Filters</label><br>
+        </div>
+        
+        <div class="col-sm-3 justify-content-end">
+            <form action="{{ route('employees.index') }}" method="GET" role="search">
+        
+                <div class="input-group">
+                    <button class="btn bg-success" type="submit" title="Search employees">
+                        <span class=""><img src="/assets/bootstrap-icons/search.svg" alt="View" width="100%" height="100%"></span>
+                    </button>
+        
+                    <input type="text" class="form-control border-dark" name="term" placeholder="Search employees" id="term" style="margin-right:5px">
+        
+                    <a href="{{ route('employees.index') }}">
+                        <button class="btn btn-danger border-dark" type="button" title="Refresh page">
+                            <span class=""><img src="/assets/bootstrap-icons/x-circle.svg" alt="View" width="100%" height="100%"></span>
+                        </button>
+                    </a>
+        
+                </div>
+            </form>
+        </div>
+
+        
         
         @include('layouts.filter')
 
     </div>
 
-    <div>
-        <div class="col-3mx-auto pull-right">
-            <div class="">
-                <form action="{{ route('employees.index') }}" method="GET" role="search">
+    <br>
 
-                    <div class="input-group">
-                        <span class="input-group-btn mr-5 mt-1">
-                            <button class="btn btn-info" type="submit" title="Search employees">
-                                <span class="fas fa-search"></span>
-                            </button>
-                        </span>
-                        <input type="text" class="form-control mr-2" name="term" placeholder="Search employees" id="term">
-                        <a href="{{ route('employees.index') }}" class=" mt-1">
-                            <span class="input-group-btn">
-                                <button class="btn btn-danger" type="button" title="Refresh page">
-                                    <span class="fas fa-sync-alt"></span>
-                                </button>
-                            </span>
-                        </a>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    @include('employees.empAddModal')
 
     <div class="table-responsive">
         <table class="table table-bordered table-hover text-nowrap" id="sortTable" style="vertical-align: middle">
@@ -68,6 +83,8 @@
                 </tr>
             </thead>
             <tbody>
+
+                
                 
                 @if(count($employees) > 0)
 
