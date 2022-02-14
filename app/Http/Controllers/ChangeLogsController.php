@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ChangeLog;
 use Illuminate\Http\Request;
 
 class ChangeLogsController extends Controller
@@ -32,9 +33,26 @@ class ChangeLogsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    static public function addEmp(Request $request, $id)
     {
-        //
+        $string = $request->all();
+        $details = implode(" ", $string);
+
+        $changeLog = new ChangeLog();
+
+        $changeLog->emp_id = $id;
+        $changeLog->type = $request->input('change_type');
+
+        $changeLog->title = 'Added employee '.$request->input('fName').' '.$request->input('lName');
+        $changeLog->description = 'Description: '.$details;
+
+        // $empInfo->position2 = isset($request['email']) ? $positions[$request->input('position2')]->name : NULL;
+        // $empInfo->position3 = isset($request['email']) ? $positions[$request->input('position3')]->name : NULL;
+        // $empInfo->status = $statuses[$request->input('empStatus')]->type;
+        // $empInfo->hired_on = $request->input('hired_on');
+        // $empInfo->current_location = $request->input('location');
+
+        $changeLog->save();
     }
 
     /**

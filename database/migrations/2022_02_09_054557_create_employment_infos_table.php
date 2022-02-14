@@ -25,7 +25,7 @@ class CreateEmploymentInfosTable extends Migration
                 $table -> string('position3')->nullable();
                 $table -> string('status');
                 $table -> date('hired_on');
-                $table -> string('current_location');
+                $table -> string('current_location')->nullable();
                 $table -> timestamps();
 
             });

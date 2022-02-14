@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Attainment;
+
+
 class AttainmentsController extends Controller
 {
     /**
@@ -32,9 +35,37 @@ class AttainmentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public static function store(Request $request, $id)
     {
-        //
+        $attainment = new Attainment();
+        
+        $attainment->emp_id = $id;
+        $attainment->type = $request->input('attainment1');
+        $attainment->title = $request->input('attainmentTitle1');
+        $attainment->description = $request->input('attainmentDesc1');
+        $attainment->attained_on = $request->input('attained_on1');
+
+        $attainment->save();
+
+        $attainment = new Attainment();
+        
+        $attainment->emp_id = $id;
+        $attainment->type = $request->input('attainment2');
+        $attainment->title = $request->input('attainmentTitle2');
+        $attainment->description = $request->input('attainmentDesc2');
+        $attainment->attained_on = $request->input('attained_on2');
+
+        $attainment->save();
+
+        $attainment = new Attainment();
+        
+        $attainment->emp_id = $id;
+        $attainment->type = $request->input('attainment3');
+        $attainment->title = $request->input('attainmentTitle3');
+        $attainment->description = $request->input('attainmentDesc3');
+        $attainment->attained_on = $request->input('attained_on3');
+
+        $attainment->save();
     }
 
     /**

@@ -38,13 +38,8 @@ class EmergencyContactsController extends Controller
         $empCont = new EmergencyContact;
 
         $empCont->emp_id = $id;
-        $empCont->company_id = $request->input('company_id');
-        $empInfo->position1 = 'Shooting Guard';
-        $empInfo->position2 = 'Small Forward';
-        $empInfo->position3 = NULL;
-        $empInfo->status = 'Regular';
-        $empInfo->hired_on = now();
-        $empInfo->current_location = 'Cebu';
+        $empCont->name = $request->input('emergencyContactName');
+        $empCont->emergencyContact = $request->input('emergencyContactNum');
         // $table -> id();
         // $table -> unsignedbigInteger('emp_id');
         // $table -> foreign('emp_id')->references('id')->on('employees')->onDelete('cascade');
@@ -57,7 +52,7 @@ class EmergencyContactsController extends Controller
         // $table -> string('current_location');
         // $table -> timestamps();
 
-        $empInfo->save();
+        $empCont->save();
     }
 
     /**

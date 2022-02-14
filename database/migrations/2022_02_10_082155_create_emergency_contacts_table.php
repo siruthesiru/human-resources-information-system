@@ -17,8 +17,8 @@ class CreateEmergencyContactsTable extends Migration
             $table->id();
             $table -> unsignedbigInteger('emp_id');
             $table -> foreign('emp_id')->references('id')->on('employees')->onDelete('cascade');
-            $table -> string('name');
-            $table -> bigInteger('emergencyContact');
+            $table -> string('name')->nullable();
+            $table -> bigInteger('emergencyContact')->nullable();
             $table->timestamps();
         });
     }

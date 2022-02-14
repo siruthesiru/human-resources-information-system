@@ -1,17 +1,13 @@
-{{-- @php 
-  use \App\Http\Controllers\EmployeesController;
-@endphp --}}
-
 <style>
     br{
-      -webkit-user-select: none; /* Safari */        
+      -webkit-user-select: none; /* Safari */
       -moz-user-select: none; /* Firefox */
       -ms-user-select: none; /* IE10+/Edge */
       user-select: none; /* Standard */
     }
 
     label{
-      color: grey;
+      color: black;
     }
 
     .hidden{
@@ -25,226 +21,577 @@
 <div class="fade modal" id="empAddModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-xl">
       <div class="modal-content container-fluid">
+        {!! Form::open(['class' => 'needs-validation','action' => 'App\Http\Controllers\EmployeesController@store', 'method' => 'POST', 'novalidate', 'id' => 'addEmpForm']) !!}
 
         <div class="modal-header">
-          <h3 class="modal-title" id="empAddModalLabel">ADD NEW EMPLOYEE</h3>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+          <h2 class="modal-title" id="empAddModalLabel">ADD NEW EMPLOYEE</h2>
+
+
+          <button type="reset" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
-        {!! Form::open(['class' => 'needs-validation','action' => 'App\Http\Controllers\EmployeesController@store', 'method' => 'POST', 'novalidate']) !!}
         <div class="modal-body">
+          
 
           <div class="row">
-            <div class="col-xl-3 g-2 col-centered">
+            
+            <div class="col-xl-1"></div>
+            
 
-              <div class="row p-1">
-
-                <p class="p-1 border" style="height:228px; width:228px; margin-top:34px; margin-left:20px" id="surroundImage">
-                  
-                  <img class="img-fluid img-thumbnail hidden" id="frame" src="" style="width:228%; max-height:228%;"/>
-
-                </p>
-
-                <h5 style="margin-left: 10px; margin-top: 4px">Profile Picture</h5>
-
-              </div>
-
-              <div class="row p-3">
-
-                
-
-                <p>
-                  
-                  <input type="file" onchange="preview()" name="profilePicSrc">
-
-                </p>
-
-                <br>
-                <br>
-
-              </div>
-
-            </div>
-  
             <div class="col-xl">
-  
-              <div class="row g-2" style="margin-bottom: 8px">
+
+              {{-- START OF PERSONAL Information --}}
+
+              <div class="row g-2">
+
+                <div class="col-xl-2 d-flex align-items-center" style="vertical-align: middle">
+                  <h6>Profile Picture</h6>
+                </div>
+            
+                  <div class="col-xl-3 col-centered">
+                    
+                    <div class="row">                            
+                      <p class="p-1 border bg-light" style="height:228px; width:228px; margin-left:10px;" id="surroundImage">
+      
+                        <img class="img-fluid img-thumbnail hidden" id="frame" src="" style="width:228px; max-height:228px;"/>
+      
+                      </p>      
+                    </div>
+      
+                    <div class="row">    
+                      <p>
+      
+                        <input type="file" onchange="preview()" name="profilePicSrc">
+      
+                      </p>      
+                    </div>
+      
+                  </div>
+
+                  <br>
+                  <hr>
+                  <br>
                   
-                  <h3>Personal Information</h3>
-                  <div class="col-xl-4 form-floating">
-                    
-                    {{Form::text('fName', '', ['class' => 'form-control filled', 'placeholder' => 'First Name', 'id' => 'floatingFirst','required'])}}
-                    <label for="floatingFirst">First Name</label>
-                  </div>
-  
-                  <div class="col-xl-4 form-floating">
-                    
-                    {{Form::text('mName', '', ['class' => 'form-control filled', 'placeholder' => 'Middle Name', 'id' => 'floatingMiddle'])}}
-                    <label for="floatingFirst">Middle Name (Optional)</label>
-                  </div>
-  
-                  <div class="col-xl-4 form-floating">
-                    
-                    {{Form::text('lName', '', ['class' => 'form-control filled', 'placeholder' => 'Last Name', 'id' => 'floatingLast','required'])}}
-                    <label for="floatingFirst">Last Name</label>
-                  </div>
-  
               </div>
 
               <br>
-  
+
               <div class="row g-2">
-  
-                <div class="col-lg-7 form-floating" style="margin-right:0px">
-                    
-                  {{Form::text('address', '', ['class' => 'form-control filled', 'placeholder' => 'Address', 'id' => 'floatingAddress', 'required'])}}
-                  <label for="floatingAddress">Address</label>
+
+                <div class="col-xl-2 d-flex align-items-center" style="vertical-align: middle">
+                  <h6>Full Name</h6>
                 </div>
 
-                <div class="col-lg-2" style="max-height: 58px; margin-right: 10px">
-  
+                <div class="col-xl-4 form-floating">
+
+                  {{Form::text('fName', '', ['class' => 'form-control filled', 'placeholder' => 'First Name', 'id' => 'floatingFirst','required'])}}
+                  <label for="floatingFirst">First Name</label>
+                </div>
+
+                <div class="col-xl-3 form-floating">
+
+                  {{Form::text('mName', '', ['class' => 'form-control filled', 'placeholder' => 'Middle Name', 'id' => 'floatingMiddle', 'optional'])}}
+                  <label for="floatingFirst">Middle Name (Optional)</label>
+                </div>
+
+                <div class="col-xl-3 form-floating">
+
+                  {{Form::text('lName', '', ['class' => 'form-control filled', 'placeholder' => 'Last Name', 'id' => 'floatingLast','required'])}}
+                  <label for="floatingFirst">Last Name</label>
+                </div>
+
+              </div>
+
+              <br>
+
+              <div class="row g-2">
+
+                <div class="col-xl-2 d-flex align-items-center" style="vertical-align: middle">
+                  <h6>Current Address</h6>
+                </div>
+
+                <div class="col-xl-4 form-floating">
+
+                  {{Form::text('street', '', ['class' => 'form-control filled', 'placeholder' => 'Street', 'id' => 'floatingAddress', 'required'])}}
+                  <label for="floatingAddress">Street Address (Bldg. #, Brgy)</label>
+                </div>
+
+                <div class="col-xl-3 form-floating">
+
+                  {{Form::text('city', '', ['class' => 'form-control filled', 'placeholder' => 'City', 'id' => 'floatingAddress', 'required'])}}
+                  <label for="floatingAddress">City</label>
+                </div>
+
+                <div class="col-xl-3 form-floating">
+
+                  {{Form::text('province', '', ['class' => 'form-control filled', 'placeholder' => 'Province', 'id' => 'floatingAddress', 'required'])}}
+                  <label for="floatingAddress">Province</label>
+                </div>
+
+              </div>
+
+              <br>
+
+              <div class="row g-2">
+
+                <div class="col-xl-2 d-flex align-items-center" style="vertical-align: middle">
+                  <h6>Birth Date</h6>
+                </div>
+
+                <div class="col-lg-3">
+
+                    {{Form::date('bDate', 'Birthday', ['class' => 'form-control', 
+                                  'placeholder' => 'Birthday', 
+                                  'data-bs-toggle' => 'tooltip', 
+                                  'data-bs-placement' => 'left', 
+                                  'id' => 'bDay', 'required', 
+                                  'style' => 'height: 58px; border-radius: 5px;'])}}
+                </div>
+
+              </div>
+
+              <br>
+
+              <div class="row g-2">
+
+                <div class="col-xl-2 d-flex align-items-center" style="vertical-align: middle">
+                  <h6>Sex</h6>
+                </div>
+
+                <div class="col-lg-2" style="max-height: 58px;">
+
                   <div class="dropdown">
-                    {{Form::select('sex', ['' => 'Sex', 'M' => 'Male', 'F' => 'Female'], 0, ['class' => 'form-select', 'type' => 'button', 'style' => 'height: 58px', 'required'])}}
+                    {{Form::select('sex', ['' => '---', 'M' => 'Male', 'F' => 'Female'], 0, ['class' => 'form-select', 
+                                    'type' => 'button', 
+                                    'style' => 'height: 58px', 
+                                    'required'])}}
                   </div>
-                    
+
                 </div>
 
-                <div class="col-lg-auto border bg-light" style="font-size: 92%; max-height: 58px; border-radius: 5px; max-width: 98%;">
-  
-                  Birth Date:
-                  <div class="row-auto">
-                    {{Form::date('bDate', 'Birthday', ['class' => 'form-control', 'placeholder' => 'Birthday', 'data-bs-toggle' => 'tooltip', 'data-bs-placement' => 'left', 'id' => 'bDay', 'required', 'style' => 'border: none;'])}}
-                  </div>
-                    
-                </div>
-                  
               </div>
 
               <br>
 
               <div class="row g-2">
+
+                <div class="col-xl-2 d-flex align-items-center" style="vertical-align: middle">
+                  <h6>Contact Info</h6>
+                </div>
+
                 <div class="col-lg input-group" style="height: 58px">
-                      
+
                   <span class="input-group-text">+63</span>
-                  {{Form::text('contactNum1', '', ['class' => 'form-control', 'placeholder' => 'Primary Contact #','aria-describedby' => 'countryCode', 'style' => 'font-size: 18px','maxlength' => '10', 'required'])}}
+                  {{Form::number('contactNum1', '', ['class' => 'form-control', 
+                                  'placeholder' => 'Primary Contact #',
+                                  'aria-describedby' => 'countryCode', 
+                                  'style' => 'font-size: 18px',
+                                  'maxlength' => '10', 'required'])}}
 
                 </div>
 
                 <div class="col-lg input-group" style="height: 58px">
-                    
+
                   <span class="input-group-text">+63</span>
-                  {{Form::text('contactNum2', '', ['class' => 'form-control', 'placeholder' => 'Secondary Contact # (Optional)','aria-describedby' => 'countryCode', 'style' => 'font-size: 18px', 'maxlength' => '10'])}}
+                  {{Form::number('contactNum2', NULL, ['class' => 'form-control', 
+                                  'placeholder' => 'Secondary Contact # (Optional)',
+                                  'aria-describedby' => 'countryCode', 
+                                  'style' => 'font-size: 18px', 
+                                  'maxlength' => '10'])}}
 
                 </div>
               </div>
 
+              <br>
 
-              <div class="row g-2" style="margin-bottom: 8px; margin-top: 10px">
-                  
-                <h5>Emergency Contact</h5>
+              <div class="row g-2">
+
+                <div class="col-xl-2 d-flex align-items-center" style="vertical-align: middle">
+                  <h6>Emgy. Contact</h6>
+                </div>
+
                 <div class="col-lg form-floating">
-                  
-                  {{Form::text('emergencyContactName', '', ['class' => 'form-control filled', 'placeholder' => 'Emergency Contact Name', 'id' => 'floatingFirst'])}}
-                  <label for="floatingFirst">Full Name of Emergency Contact</label>
+
+                  {{Form::text('emergencyContactName', '', ['class' => 'form-control filled', 'placeholder' => 'Emergency Contact Name', 'id' => 'floatingEmergency'])}}
+                  <label for="floatingEmergency">Emergency Contact's Full Name</label>
                 </div>
 
                 <div class="col-lg input-group" style="height: 58px">
-                      
+
                   <span class="input-group-text">+63</span>
-                  {{Form::text('emergencyContactNum', '', ['class' => 'form-control', 'placeholder' => 'Emergency Contact #','aria-describedby' => 'countryCode', 'style' => 'font-size: 18px','maxlength' => '10'])}}
+                  {{Form::number('emergencyContactNum', '', ['class' => 'form-control', 
+                                  'placeholder' => 'Emergency Contact #',
+                                  'aria-describedby' => 'countryCode', 
+                                  'style' => 'font-size: 18px',
+                                  'maxlength' => '10'])}}
+
+                </div>
+                
+              </div>
+
+              <br>
+              <br>
+
+              <div class="row g-2">
+
+                <div class="col-xl-2 d-flex align-items-center" style="vertical-align: middle">
+                  <h6>Attainment 1</h6>
+                </div>
+
+                <div class="col">
+                  <div class="row g-2">
+                    <div class="dropdown col-lg-3">
+                      {{Form::select('attainment1', ['' => 'Type', 'Secondary' => 'Secondary', 'Tertiary' => 'Tertiary', 'Vocational' => 'Vocational'],'', ['class' => 'form-select','type' => 'button', 'style' => 'height: 58px'])}}
+                    </div>
+    
+                    <div class="col-lg-5 form-floating" style="margin-right:0px">
+    
+                      {{Form::text('attainmentTitle1', '', ['class' => 'form-control filled', 'placeholder' => 'Attainment', 'id' => 'floatingAddress'])}}
+                      <label for="floatingAddress">Attainment Title</label>
+                    </div>
+
+                    <div class="col-lg-3 border bg-light" style="font-size: 92%; max-height: 58px; border-radius: 5px;">
+
+                      <span style="margin-left:10px">Date Attained:</span>
+                      <div class="row-auto">
+                        {{Form::date('attained_on1', 'Date Attained', ['class' => 'form-control', 'data-bs-toggle' => 'tooltip', 'data-bs-placement' => 'left', 'id' => 'attained_on', 'style' => 'border: none;'])}}
+                      </div>
+    
+                    </div>
+    
+                    <div class="col-lg-12 form-floating" style="margin-right:0px">
+    
+                      {{Form::text('attainmentDesc1', '', ['class' => 'form-control filled', 'placeholder' => 'Attainment', 'id' => 'floatingAddress'])}}
+                      <label for="floatingAddress">Description (Optional)</label>
+                    </div>
+                  </div>
+                </div>                
+
+              </div>
+              
+              <br>
+              <br>
+
+              <div class="row g-2">
+
+                <div class="col-xl-2 d-flex align-items-center" style="vertical-align: middle">
+                  <h6>Attainment 2</h6>
+                </div>
+
+                <div class="col">
+                  <div class="row g-2">
+                    <div class="dropdown col-lg-3">
+                      {{Form::select('attainment2', ['' => 'Type', 'Secondary' => 'Secondary', 'Tertiary' => 'Tertiary', 'Vocational' => 'Vocational'],'', ['class' => 'form-select','type' => 'button', 'style' => 'height: 58px'])}}
+                    </div>
+    
+                    <div class="col-lg-5 form-floating" style="margin-right:0px">
+    
+                      {{Form::text('attainmentTitle2', '', ['class' => 'form-control filled', 'placeholder' => 'Attainment', 'id' => 'floatingAddress'])}}
+                      <label for="floatingAddress">Attainment Title</label>
+                    </div>
+
+                    <div class="col-lg-3 border bg-light" style="font-size: 92%; max-height: 58px; border-radius: 5px;">
+
+                      <span style="margin-left:10px">Date Attained:</span>
+                      <div class="row-auto">
+                        {{Form::date('attained_on2', 'Date Attained', ['class' => 'form-control', 'data-bs-toggle' => 'tooltip', 'data-bs-placement' => 'left', 'id' => 'attained_on', 'style' => 'border: none;'])}}
+                      </div>
+    
+                    </div>
+    
+                    <div class="col-lg-12 form-floating" style="margin-right:0px">
+    
+                      {{Form::text('attainmentDesc2', '', ['class' => 'form-control filled', 'placeholder' => 'Attainment', 'id' => 'floatingAddress'])}}
+                      <label for="floatingAddress">Description (Optional)</label>
+                    </div>
+                  </div>
+                </div>                
+
+              </div>
+              
+              <br>
+              <br>
+
+              <div class="row g-2">
+
+                <div class="col-xl-2 d-flex align-items-center" style="vertical-align: middle">
+                  <h6>Attainment 3</h6>
+                </div>
+
+                <div class="col">
+                  <div class="row g-2">
+                    <div class="dropdown col-lg-3">
+                      {{Form::select('attainment3', ['' => 'Type', 'Secondary' => 'Secondary', 'Tertiary' => 'Tertiary', 'Vocational' => 'Vocational'],'', ['class' => 'form-select','type' => 'button', 'style' => 'height: 58px'])}}
+                    </div>
+    
+                    <div class="col-lg-5 form-floating" style="margin-right:0px">
+    
+                      {{Form::text('attainmentTitle3', '', ['class' => 'form-control filled', 'placeholder' => 'Attainment', 'id' => 'floatingAddress'])}}
+                      <label for="floatingAddress">Attainment Title</label>
+                    </div>
+
+                    <div class="col-lg-3 border bg-light" style="font-size: 92%; max-height: 58px; border-radius: 5px;">
+
+                      <span style="margin-left:10px">Date Attained:</span>
+                      <div class="row-auto">
+                        {{Form::date('attained_on3', 'Date Attained', ['class' => 'form-control', 'data-bs-toggle' => 'tooltip', 'data-bs-placement' => 'left', 'id' => 'attained_on', 'style' => 'border: none;'])}}
+                      </div>
+    
+                    </div>
+    
+                    <div class="col-lg-12 form-floating" style="margin-right:0px">
+    
+                      {{Form::text('attainmentDesc3', '', ['class' => 'form-control filled', 'placeholder' => 'Attainment', 'id' => 'floatingAddress'])}}
+                      <label for="floatingAddress">Description (Optional)</label>
+                    </div>
+                  </div>
+                </div>                
+
+              </div>
+
+              {{-- END OF PERSONAL INFORMATION --}}
+
+              <br>
+              <hr>
+              <br>
+
+              <div class="row g-2">
+                <div class="col-xl-2 d-flex align-items-center" style="vertical-align: middle">
+                  <h6>Company ID</h6>
+                </div>
+
+                  <div class="col-xl-4 form-floating">
+
+                    {{Form::number('company_id', '', ['class' => 'form-control filled', 'placeholder' => 'Company ID', 'id' => 'floatingFirst','required'])}}
+                    <label for="floatingFirst">Company ID</label>
+                  </div>
+
+              </div>
+
+                <br>
+
+              <div class="row g-2">
+                
+                <div class="col-xl-2 d-flex align-items-center" style="vertical-align: middle">
+                  <h6>Date Hired</h6>
+                </div>
+    
+                  <div class="col-lg-3">
+
+                      {{Form::date('hired_on', 'Date Hired', ['class' => 'form-control',
+                                    'data-bs-toggle' => 'tooltip', 
+                                    'data-bs-placement' => 'left', 
+                                    'id' => 'hired_on', 'required', 
+                                    'style' => 'height: 58px; border-radius: 5px;'])}}
+                  </div>
+    
+
+              </div>
+
+              <br>
+
+              <div class="row g-2">
+
+                <div class="col-xl-2 d-flex align-items-center" style="vertical-align: middle">
+                  <h6>Employment Status</h6>
+                </div>
+
+                <div class="dropdown col-lg-4">
+                  {{Form::select('empStatus', $statuses->pluck('type'),'', ['class' => 'form-select', 'placeholder' => '---','type' => 'button', 'style' => 'height: 58px','required'])}}
+                </div>
+
+              </div>
+
+              <br>
+
+              <div class="row g-2">
+
+                <div class="col-xl-2 d-flex align-items-center" style="vertical-align: middle">
+                  <h6>Branch</h6>
+                </div>
+
+                <div class="dropdown col-lg-4">
+                  {{Form::select('branch', $branches->pluck('name'),'', ['class' => 'form-select', 'placeholder' => '---','type' => 'button', 'style' => 'height: 58px','required'])}}
+                </div>
+
+              </div>
+
+              <br>
+
+              <div class="row g-2">
+
+                <div class="col-xl-2 d-flex align-items-center" style="vertical-align: middle">
+                  <h6>Department</h6>
+                </div>
+
+                <div class="dropdown col-lg-4">
+                  {{Form::select('department', $departments->pluck('name'),'', ['class' => 'form-select', 'placeholder' => '---','type' => 'button', 'style' => 'height: 58px', 'required'])}}
+                </div>
+
+              </div>
+
+              <br>
+
+              <div class="row g-2">
+
+                <div class="col-xl-2 d-flex align-items-center" style="vertical-align: middle">
+                  <h6>Assigned Role</h6>
+                </div>
+
+                <div class="dropdown col-lg-3">
+                  {{Form::select('position1', $positions->pluck('name'),'', [
+                            'class' => 'form-select',
+                            'placeholder' => 'Primary Role',
+                            'type' => 'button',
+                            'style' => 'height: 58px',
+                            'required'
+                    ])}}
+                </div>
+
+                <div class="dropdown col-lg-3">
+                  {{Form::select('position2', $positions->pluck('name'), NULL, ['class' => 'form-select', 'placeholder' => 'Other Role (optional)','type' => 'button', 'style' => 'height: 58px'])}}
+                </div>
+
+                <div class="dropdown col-lg-3">
+                  {{Form::select('position3', $positions->pluck('name'), NULL, ['class' => 'form-select', 'placeholder' => 'Other Role (optional)','type' => 'button', 'style' => 'height: 58px'])}}
+                </div>
+              </div>
+
+              <br>
+
+              <div class="row g-2">
+
+                <div class="col-xl-2 d-flex align-items-center" style="vertical-align: middle">
+                  <h6>Assigned Project</h6>
+                </div>
+
+                <div class="dropdown col-lg-4">
+                  {{Form::select('project', $departments->pluck('name'),'', ['class' => 'form-select', 'placeholder' => 'Project Title (Optional)','type' => 'button', 'style' => 'height: 58px'])}}
+                </div>
+
+                <div class="col-lg-6 form-floating" style="margin-right:0px">
+
+                  {{Form::text('location', '', ['class' => 'form-control filled', 'placeholder' => 'Project Location', 'id' => 'floatingAddress'])}}
+                  <label for="floatingAddress">Project Location (Optional)</label>
+                </div>
+
+              </div>
+
+              <br>
+              <hr>
+              <br>
+
+              <div class="row g-2">
+
+                <div class="col-xl-2 d-flex align-items-center" style="vertical-align: middle">
+                  <h6>Current Rate</h6>
+                </div>
+
+                <div class="col-sm input-group" style="height: 58px; max-width: 35vh">
+
+                  <span class="input-group-text">Php</span>
+                  {{Form::number('current_rate', '', ['class' => 'form-control', 
+                                  'placeholder' => 'Amount',
+                                  'style' => 'font-size: 18px',
+                                  'required'])}}
+                  <span class="input-group-text">.00</span>
 
                 </div>
 
               </div>
-  
-            </div>
 
-          </div>
+              <br>
 
-          <hr style="color:gray">
-          <br>
+              <div class="row g-2">
 
-          <h3>Employment Information</h3>
+                <div class="col-xl-2 d-flex align-items-center" style="vertical-align: middle">
+                  <h6>Previous Rate</h6>
+                </div>
 
-          <div class="row g-2">
-            <div class="col-xl-3 form-floating">
-                    
-              {{Form::text('company_id', '', ['class' => 'form-control filled', 'placeholder' => 'First Name', 'id' => 'floatingFirst','required'])}}
-              <label for="floatingFirst">Company ID</label>
-            </div>
-            
-          </div>
+                <div class="col-sm input-group" style="height: 58px; max-width: 35vh">
 
-          <br>
+                  <span class="input-group-text">Php</span>
+                  {{Form::number('previous_rate', '', ['class' => 'form-control', 
+                                  'placeholder' => 'Amount (Optional)',
+                                  'style' => 'font-size: 18px'])}}
+                  <span class="input-group-text">.00</span>
 
-          <div class="row g-2">
-            
-            <div class="col-lg-3 border bg-light" style="font-size: 92%; max-height: 58px; border-radius: 5px; max-width: 95%; margin-left:3px;">
-  
-              Date Hired:
-              <div class="row-auto">
-                {{Form::date('hired_on', 'Date Hired', ['class' => 'form-control', 'data-bs-toggle' => 'tooltip', 'data-bs-placement' => 'left', 'id' => 'hDay', 'required', 'style' => 'border: none;'])}}
+                </div>
+
               </div>
-                
+
+              <br>
+
+              <div class="row g-2">
+
+                <div class="col-xl-2 d-flex align-items-center" style="vertical-align: middle">
+                  <h6>Current Loan</h6>
+                </div>
+
+                <div class="col-sm input-group" style="height: 58px; max-width: 35vh">
+
+                  <span class="input-group-text">Php</span>
+                  {{Form::number('previous_rate', '', ['class' => 'form-control', 
+                                  'placeholder' => 'Amount (Optional)',
+                                  'style' => 'font-size: 18px'])}}
+                  <span class="input-group-text">.00</span>
+
+                </div>
+
+              </div>
+
+              <br>
+
+              <div class="row g-2">
+
+                <div class="col-xl-2 d-flex align-items-center" style="vertical-align: middle">
+                  <h6>Allowance</h6>
+                </div>
+
+                <div class="col-sm input-group" style="height: 58px; max-width: 35vh">
+
+                  <span class="input-group-text">Php</span>
+                  {{Form::number('allowance', '', ['class' => 'form-control', 
+                                  'placeholder' => 'Amount (Optional)',
+                                  'style' => 'font-size: 18px'])}}
+                  <span class="input-group-text">.00</span>
+
+                </div>
+
+              </div>
+
+              <br>
+
+
+
+              {{-- <div class="container1">
+                <button class="add_form_field">Add New Field &nbsp; 
+                  <span style="font-size:16px; font-weight:bold;">+ </span>
+                </button>
+                <div><input type="text" name="mytext[]"></div>
+              </div> --}}
+
+              
+
             </div>
 
-            <div class="dropdown col-lg-3">
-              {{Form::select('empStatus', $statuses->pluck('type'),'', ['class' => 'form-select', 'placeholder' => 'Employment Status','type' => 'button', 'style' => 'height: 58px','required'])}}
-            </div>
+            <div class="col-xl-1"></div>    
 
-            
           </div>
 
-          <br>
 
-          <div class="row g-2">
+          {{-- END OF MODAL BODY --}}
 
-            <div class="dropdown col-lg-3">
-              {{Form::select('department', $departments->pluck('name'),'', ['class' => 'form-select', 'placeholder' => 'Department','type' => 'button', 'style' => 'height: 58px', 'required'])}}
-            </div>
+          <input name="change_type" value="1" class="hidden"/>
 
-            <div class="dropdown col-lg-3">
-              {{Form::select('branch', $branches->pluck('name'),'', ['class' => 'form-select', 'placeholder' => 'Branch','type' => 'button', 'style' => 'height: 58px','required'])}}
-            </div>
-            
-          </div>
 
-          <br>
+          
 
-          <div class="row g-2">
-
-            <h5>Assignment</h5>
-
-            <div class="dropdown col-lg-3">
-              {{Form::select('position1', $positions->pluck('name'),'', ['class' => 'form-select', 'placeholder' => 'Main Role','type' => 'button', 'style' => 'height: 58px', 'required'])}}
-            </div>
-
-            <div class="dropdown col-lg-3">
-              {{Form::select('position2', $positions->pluck('name'),'', ['class' => 'form-select', 'placeholder' => 'Other Role (optional)','type' => 'button', 'style' => 'height: 58px'])}}
-            </div>
-
-            <div class="dropdown col-lg-3">
-              {{Form::select('position3', $positions->pluck('name'),'', ['class' => 'form-select', 'placeholder' => 'Other Role (optional)','type' => 'button', 'style' => 'height: 58px'])}}
-            </div>
-          </div>
-
-          <br>
-
-          <div class="row g-2">
-
-            <div class="col-lg-6 form-floating" style="margin-right:0px">
-                    
-              {{Form::text('location', '', ['class' => 'form-control filled', 'placeholder' => 'Current Location', 'id' => 'floatingAddress', 'required'])}}
-              <label for="floatingAddress">Current Location</label>
-            </div>
-
-            
-          </div>
-            
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closer">Close</button>
+          <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal" id="closer">Close</button>
           {{-- <button type="button" class="btn btn-success">Add</button> --}}
           {{Form::submit('Add', ['class' => 'btn btn-success'])}}
         </div>
@@ -254,9 +601,8 @@
       </div>
     </div>
 
-    
-    {{--image preview--}}
 
+    {{--image preview--}}
     <script>
 
       function preview() {
@@ -264,9 +610,33 @@
         frame.classList.remove("hidden");
         frame.src=URL.createObjectURL(event.target.files[0]);
       }
+
+      $(document).ready(function() {
+          var max_fields = 10;
+          var wrapper = $(".container1");
+          var add_button = $(".add_form_field");
+
+          var x = 1;
+
+          $(add_button).click(function(e) {
+              e.preventDefault();
+              if (x < max_fields) {
+                  x++;
+                  $(wrapper).append('<div><input type="text" name="mytext[]"/><a href="#" class="delete">Delete</a></div>'); //add input box
+              } else {
+                  alert('You Reached the limits')
+              }
+          });
+
+          $(wrapper).on("click", ".delete", function(e) {
+              e.preventDefault();
+              $(this).parent('div').remove();
+              x--;
+          })
+      });
     </script>
 
     @include('tools.formValidation')
 
-    
+
 </div>

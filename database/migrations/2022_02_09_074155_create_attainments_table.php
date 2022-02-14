@@ -17,10 +17,10 @@ class CreateAttainmentsTable extends Migration
             $table -> id();
             $table -> unsignedbigInteger('emp_id');
             $table -> foreign('emp_id')->references('id')->on('employees')->onDelete('cascade');
-            $table -> string('type');
-            $table -> string('title');
-            $table -> string('description');
-            $table -> date('attained_on');
+            $table -> string('type')->nullable;
+            $table -> string('title')->nullable;
+            $table -> string('description')->nullable;
+            $table -> date('attained_on')->nullable;
             $table -> timestamps();
         });
     }

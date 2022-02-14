@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FinancialRecord as ModelsFinancialRecord;
+
 use Illuminate\Http\Request;
 
 class FinancialRecordsController extends Controller
@@ -32,9 +34,19 @@ class FinancialRecordsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public static function store(Request $request, $id)
     {
-        //
+        $financialRec = new ModelsFinancialRecord;
+        
+        $financialRec->emp_id = $id;
+        $financialRec->current_rate = $request->input('current_rate');
+        $financialRec->previous_rate = $request->input('previous_rate');
+        $financialRec->adjustment = $request->input('adjustment');
+        $financialRec->current_loan = $request->input('current_loan');
+        $financialRec->to_deduct = $request->input('current_loan');
+        $financialRec->allowance = $request->input('allowance');
+
+        $financialRec->save();
     }
 
     /**

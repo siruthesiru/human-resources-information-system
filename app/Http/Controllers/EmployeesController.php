@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\Employee as ModelsEmployee;
-use App\Models\EmploymentInfo as ModelsEmpInfo;
+use App\Models\Department as ModelsDepartment;
+use App\Models\Branch as ModelsBranch;
+
+use Illuminate\Support\Facades\Storage;
+use PhpParser\Node\Expr\AssignOp\Concat;
 
 class EmployeesController extends Controller
 {
@@ -17,22 +22,24 @@ class EmployeesController extends Controller
     {
         // return ModelsEmployee::all();
 
-        // $employees = ModelsEmployee::where('department', 'Lakers')->get();
-        // $employees = ModelsEmployee::orderBy('lName', 'asc')->paginate(25);
+        if( ModelsEmployee::all() != NULL){
+            $employees = ModelsEmployee::where([
+                ['id', '!=', NULL],
+                [function($query) use ($request) {
+    
+                    if ($term = $request->term) {
+                        $query->orWhere('fName', 'LIKE', '%'.$term.'%')->get();
+                        $query->orWhere('lName', 'LIKE', '%'.$term.'%')->get();
+                        $query->orWhere('mName', 'LIKE', '%'.$term.'%')->get();
+                    }
+                },
+                ]
+            ])
+                ->orderBy('lName')
+                ->paginate(25);
+        }
 
-        // $employees = ModelsEmployee::with('getEmploymentInfo')->get();
-
-        $employees = ModelsEmployee::with('empInfo')->where([
-            ['id', '!=', NULL],
-            [function($query) use ($request) {
-                if ($term = $request->term) {
-                    $query->orWhere('fName', 'LIKE', '%'.$term.'%')->get();
-                    $query->orWhere('lName', 'LIKE', '%'.$term.'%')->get();
-                }
-            }]
-        ])
-            ->orderBy('lName', 'asc')
-            ->paginate(25);
+        
 
         // dd($employees);
 
@@ -44,6 +51,7 @@ class EmployeesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function add()
     {
         
@@ -55,15 +63,37 @@ class EmployeesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         $this -> validate($request, [
             'fName' => 'required',
             'lName' => 'required',
             'bDate' => 'required',
-            'address' => 'required',
-            'contactNum1' => 'required'
+            'street' => 'required',
+            'city' => 'required',
+            'province' => 'required',
+            'contactNum1' => 'required',
+            'department' => 'required',
+            'branch' => 'required',
+            'company_id' => 'required',
+            'position1' => 'required',
+            'empStatus' => 'required',
+            'hired_on' => 'required',
         ]);
+
+        $departments = ModelsDepartment::all();
+        $branches = ModelsBranch::all();
+
+        if ($request->hasFile('photo')) {
+            $image      = $request->file('photo');
+            $fileName   = time() . '.' . $image->getClientOriginalExtension();
+
+            $img = $image->getRealPath();
+
+            dd();
+            Storage::disk('local')->put('images/1/smalls'.'/'.$fileName, $img, 'public');
+        }
 
         $employee = new ModelsEmployee;
 
@@ -72,12 +102,14 @@ class EmployeesController extends Controller
         $employee->lName = $request->input('lName');
         $employee->bDate = $request->input('bDate');
         $employee->sex = $request->input('sex');
-        $employee->address = $request->input('address');
-        $employee->contactNum1 = '0'.$request->input('contactNum1');
-        $employee->contactNum2 = '0'.$request->input('contactNum2');
+        $employee->street = $request->input('street');
+        $employee->city = $request->input('city');
+        $employee->province = $request->input('province');
+        $employee->contactNum1 = $request->input('contactNum1');
+        $employee->contactNum2 = $request->input('contactNum2');
         $employee->profilePicSrc = NULL;
-        $employee->department = 1;
-        $employee->branch = 1;
+        $employee->department = $departments[$request->input('department')]->name;
+        $employee->branch = $branches[$request->input('branch')]->name;
 
         $matchThese = ['fName' => $employee->fName, 'lName' => $employee->lName];
 
@@ -87,6 +119,10 @@ class EmployeesController extends Controller
 
         EmploymentInfosController::store($request, $employeeID->id);
         EmergencyContactsController::store($request, $employeeID->id);
+        FinancialRecordsController::store($request, $employeeID->id);
+        AttainmentsController::store($request , $employeeID->id);
+
+        ChangeLogsController::addEmp($request, $employeeID->id);
 
         return redirect('/employees')->with('success', 'Employee Added!');
     }
@@ -120,6 +156,7 @@ class EmployeesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, $id)
     {
         $this -> validate($request, [

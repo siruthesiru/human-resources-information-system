@@ -118,8 +118,8 @@
   use App\Models\Department;
   use App\Models\Branch;
 
-  $departments = App\Models\Department::all();
-  $branches = App\Models\Branch::all();
+  $departments = App\Models\Department::orderBy('name', 'asc')->get();
+  $branches = App\Models\Branch::orderBy('name', 'asc')->get();
 @endphp
 
 <nav class="navbar navbar-expand-xxl navbar-dark" aria-label="Third navbar example" style="position:fixed ; top: 0 ; width : 100%; z-index:5; background-color: #017f36">
