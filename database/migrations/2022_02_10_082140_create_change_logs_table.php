@@ -14,11 +14,13 @@ class CreateChangeLogsTable extends Migration
     public function up()
     {
         Schema::create('change_logs', function (Blueprint $table) {
-            $table->id();
-            $table->integer('type');
-            $table->string('title');
-            $table->mediumText('description');
-            $table->timestamps();
+            $table -> id();
+            $table -> unsignedbigInteger('emp_id');
+            $table -> foreign('emp_id')->references('id')->on('employees')->onDelete('cascade');
+            $table -> integer('type');
+            $table -> string('title');
+            $table -> mediumText('description');
+            $table -> timestamps();
         });
     }
 

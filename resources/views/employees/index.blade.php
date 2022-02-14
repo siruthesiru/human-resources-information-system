@@ -31,7 +31,7 @@
             <label class="btn btn-outline-secondary" for="btn-check-outlined" style="margin-bottom: 10px">Filters</label><br>
         </div>
         
-        <div class="col-sm-3 justify-content-end">
+        <div class="col-md-3 justify-content-end">
             <form action="{{ route('employees.index') }}" method="GET" role="search">
         
                 <div class="input-group">
@@ -67,16 +67,13 @@
                 
                 <tr>
                     
-                    {{-- <th>ID #</th> --}}
+                    <th>ID #</th>
                     <th>Last Name</th>
                     <th>First Name</th>
-                    {{-- <th>Position 1</th>
-                    <th>Position 2</th>
-                    <th>Position 3</th>
+                    <th>Position 1</th>
                     <th>Department</th>
-                    <th>Employment</th> --}}
-                    <th>Location</th>
-                    <th>Bdate</th>
+                    <th>Branch</th>
+                    <th>Employment</th>
                     <th>Contact #</th>
                     <th>Actions</th>
 
@@ -91,16 +88,13 @@
                     @foreach($employees as $employee)
                         <tr>
 
-                            {{-- <td>{{$employee->emp_id}}</td> --}}
+                            <td>{{$employee->empInfo->company_id}}</td>
                             <td>{{$employee->lName}}</td>
                             <td>{{$employee->fName}}</td>
-                            {{-- <td>{{$employee->position1}}</td>
-                            <td>{{$employee->position2}}</td>
-                            <td>{{$employee->position3}}</td>
+                            <td>{{$employee->empInfo->position1}}</td>
                             <td>{{$employee->department}}</td>
-                            <td>{{$employee->employmentStatus}}</td> --}}
-                            <td>{{ \Illuminate\Support\Str::limit($employee->address, 20, $end='...') }}</td>
-                            <td>{{$employee->bDate}}</td>
+                            <td>{{$employee->branch}}</td>
+                            <td>{{$employee->empInfo->status}}</td>
                             <td>{{$employee->contactNum1}}</td>
 
                             <td class="align-middle">

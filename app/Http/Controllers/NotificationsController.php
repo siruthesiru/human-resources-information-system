@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\EmploymentInfo as ModelsEmpInfo;
-use App\Models\Position as ModelsPosition;
-use App\Models\EmploymentStatus as ModelsStatus;
 
-class EmploymentInfosController extends Controller
+class NotificationsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,26 +32,9 @@ class EmploymentInfosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public static function store(Request $request, $id)
+    public function store(Request $request)
     {
-
-        $empInfo = new ModelsEmpInfo;
-        
-        $positions = ModelsPosition::all();
-        $statuses = ModelsStatus::all();
-
-        $empInfo->emp_id = $id;
-        $empInfo->company_id = $request->input('company_id');
-        $empInfo->position1 = $positions[$request->input('position1')]->name;
-        $empInfo->position2 = isset($request['email']) ? $positions[$request->input('position2')]->name : NULL;
-        $empInfo->position3 = isset($request['email']) ? $positions[$request->input('position3')]->name : NULL;
-        $empInfo->status = $statuses[$request->input('empStatus')]->type;
-        $empInfo->hired_on = $request->input('hired_on');
-        $empInfo->current_location = $request->input('location');
-
-        $empInfo->save();
-
-
+        //
     }
 
     /**

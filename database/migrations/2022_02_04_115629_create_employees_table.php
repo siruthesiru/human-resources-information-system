@@ -21,7 +21,9 @@ class CreateEmployeesTable extends Migration
                 $table -> string('lName');
                 $table -> char('sex');
                 $table -> date('bDate');
-                $table -> string('address');
+                $table -> string('street');
+                $table -> string('city');
+                $table -> string('province');
                 $table -> bigInteger('contactNum1');
                 $table -> bigInteger('contactNum2')->nullable();
                 $table -> string('profilePicSrc')->nullable();

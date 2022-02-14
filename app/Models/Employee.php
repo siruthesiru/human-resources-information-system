@@ -20,7 +20,7 @@ class Employee extends Model
 
     public $timestamps = true;
 
-    protected $fillable = ['fName', 'mName', 'fName', 'bDate', 'address', 'contactNum1', 'contactNum2', 'profilePicSrc'];
+    protected $fillable = ['fName', 'mName', 'fName', 'bDate', 'street', 'city', 'province', 'contactNum1', 'contactNum2', 'profilePicSrc', 'department', 'branch'];
 
     public function empInfo(){
         return $this->hasOne(EmploymentInfo::class, 'emp_id', 'id');
@@ -44,6 +44,10 @@ class Employee extends Model
 
     public function ratelog(){
         return $this->hasMany(RateLog::class, 'emp_id', 'id');
+    }
+
+    public function changelog(){
+        return $this->hasMany(ChangeLog::class, 'emp_id', 'id');
     }
 
     public function emergencyContact(){
