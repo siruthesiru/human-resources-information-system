@@ -85,19 +85,19 @@
 
                 <div class="col-xl-4 form-floating">
 
-                  {{Form::text('fName', '', ['class' => 'form-control filled', 'placeholder' => 'First Name', 'id' => 'floatingFirst','required'])}}
+                  {{Form::text('fName', NULL, ['class' => 'form-control filled', 'placeholder' => 'First Name', 'id' => 'floatingFirst','required'])}}
                   <label for="floatingFirst">First Name</label>
                 </div>
 
                 <div class="col-xl-3 form-floating">
 
-                  {{Form::text('mName', '', ['class' => 'form-control filled', 'placeholder' => 'Middle Name', 'id' => 'floatingMiddle', 'optional'])}}
+                  {{Form::text('mName', NULL, ['class' => 'form-control filled', 'placeholder' => 'Middle Name', 'id' => 'floatingMiddle', 'optional'])}}
                   <label for="floatingFirst">Middle Name (Optional)</label>
                 </div>
 
                 <div class="col-xl-3 form-floating">
 
-                  {{Form::text('lName', '', ['class' => 'form-control filled', 'placeholder' => 'Last Name', 'id' => 'floatingLast','required'])}}
+                  {{Form::text('lName', NULL, ['class' => 'form-control filled', 'placeholder' => 'Last Name', 'id' => 'floatingLast','required'])}}
                   <label for="floatingFirst">Last Name</label>
                 </div>
 
@@ -113,19 +113,19 @@
 
                 <div class="col-xl-4 form-floating">
 
-                  {{Form::text('street', '', ['class' => 'form-control filled', 'placeholder' => 'Street', 'id' => 'floatingAddress', 'required'])}}
+                  {{Form::text('street', NULL, ['class' => 'form-control filled', 'placeholder' => 'Street', 'id' => 'floatingAddress', 'required'])}}
                   <label for="floatingAddress">Street Address (Bldg. #, Brgy)</label>
                 </div>
 
                 <div class="col-xl-3 form-floating">
 
-                  {{Form::text('city', '', ['class' => 'form-control filled', 'placeholder' => 'City', 'id' => 'floatingAddress', 'required'])}}
+                  {{Form::text('city', NULL, ['class' => 'form-control filled', 'placeholder' => 'City', 'id' => 'floatingAddress', 'required'])}}
                   <label for="floatingAddress">City</label>
                 </div>
 
                 <div class="col-xl-3 form-floating">
 
-                  {{Form::text('province', '', ['class' => 'form-control filled', 'placeholder' => 'Province', 'id' => 'floatingAddress', 'required'])}}
+                  {{Form::text('province', NULL, ['class' => 'form-control filled', 'placeholder' => 'Province', 'id' => 'floatingAddress', 'required'])}}
                   <label for="floatingAddress">Province</label>
                 </div>
 
@@ -162,7 +162,7 @@
                 <div class="col-lg-2" style="max-height: 58px;">
 
                   <div class="dropdown">
-                    {{Form::select('sex', ['' => '---', 'M' => 'Male', 'F' => 'Female'], 0, ['class' => 'form-select', 
+                    {{Form::select('sex', [NULL => '---', 'M' => 'Male', 'F' => 'Female'], 0, ['class' => 'form-select', 
                                     'type' => 'button', 
                                     'style' => 'height: 58px', 
                                     'required'])}}
@@ -183,7 +183,7 @@
                 <div class="col-lg input-group" style="height: 58px">
 
                   <span class="input-group-text">+63</span>
-                  {{Form::number('contactNum1', '', ['class' => 'form-control', 
+                  {{Form::number('contactNum1', NULL, ['class' => 'form-control', 
                                   'placeholder' => 'Primary Contact #',
                                   'aria-describedby' => 'countryCode', 
                                   'style' => 'font-size: 18px',
@@ -213,14 +213,14 @@
 
                 <div class="col-lg form-floating">
 
-                  {{Form::text('emergencyContactName', '', ['class' => 'form-control filled', 'placeholder' => 'Emergency Contact Name', 'id' => 'floatingEmergency'])}}
+                  {{Form::text('emergencyContactName', NULL, ['class' => 'form-control filled', 'placeholder' => 'Emergency Contact Name', 'id' => 'floatingEmergency'])}}
                   <label for="floatingEmergency">Emergency Contact's Full Name</label>
                 </div>
 
                 <div class="col-lg input-group" style="height: 58px">
 
                   <span class="input-group-text">+63</span>
-                  {{Form::number('emergencyContactNum', '', ['class' => 'form-control', 
+                  {{Form::number('emergencyContactNum', NULL, ['class' => 'form-control', 
                                   'placeholder' => 'Emergency Contact #',
                                   'aria-describedby' => 'countryCode', 
                                   'style' => 'font-size: 18px',
@@ -242,12 +242,12 @@
                 <div class="col">
                   <div class="row g-2">
                     <div class="dropdown col-lg-3">
-                      {{Form::select('attainment1', ['' => 'Type', 'Secondary' => 'Secondary', 'Tertiary' => 'Tertiary', 'Vocational' => 'Vocational'],'', ['class' => 'form-select','type' => 'button', 'style' => 'height: 58px'])}}
+                      {{Form::select('attainment1', [NULL => 'Type', 'Secondary' => 'Secondary', 'Tertiary' => 'Tertiary', 'Vocational' => 'Vocational'],NULL, ['class' => 'form-select','type' => 'button', 'style' => 'height: 58px'])}}
                     </div>
     
                     <div class="col-lg-5 form-floating" style="margin-right:0px">
     
-                      {{Form::text('attainmentTitle1', '', ['class' => 'form-control filled', 'placeholder' => 'Attainment', 'id' => 'floatingAddress'])}}
+                      {{Form::text('attainmentTitle1', NULL, ['class' => 'form-control filled', 'placeholder' => 'Attainment', 'id' => 'floatingAddress'])}}
                       <label for="floatingAddress">Attainment Title</label>
                     </div>
 
@@ -262,7 +262,7 @@
     
                     <div class="col-lg-12 form-floating" style="margin-right:0px">
     
-                      {{Form::text('attainmentDesc1', '', ['class' => 'form-control filled', 'placeholder' => 'Attainment', 'id' => 'floatingAddress'])}}
+                      {{Form::text('attainmentDesc1', NULL, ['class' => 'form-control filled', 'placeholder' => 'Attainment', 'id' => 'floatingAddress'])}}
                       <label for="floatingAddress">Description (Optional)</label>
                     </div>
                   </div>
@@ -282,12 +282,12 @@
                 <div class="col">
                   <div class="row g-2">
                     <div class="dropdown col-lg-3">
-                      {{Form::select('attainment2', ['' => 'Type', 'Secondary' => 'Secondary', 'Tertiary' => 'Tertiary', 'Vocational' => 'Vocational'],'', ['class' => 'form-select','type' => 'button', 'style' => 'height: 58px'])}}
+                      {{Form::select('attainment2', [NULL => 'Type', 'Secondary' => 'Secondary', 'Tertiary' => 'Tertiary', 'Vocational' => 'Vocational'],NULL, ['class' => 'form-select','type' => 'button', 'style' => 'height: 58px'])}}
                     </div>
     
                     <div class="col-lg-5 form-floating" style="margin-right:0px">
     
-                      {{Form::text('attainmentTitle2', '', ['class' => 'form-control filled', 'placeholder' => 'Attainment', 'id' => 'floatingAddress'])}}
+                      {{Form::text('attainmentTitle2', NULL, ['class' => 'form-control filled', 'placeholder' => 'Attainment', 'id' => 'floatingAddress'])}}
                       <label for="floatingAddress">Attainment Title</label>
                     </div>
 
@@ -302,7 +302,7 @@
     
                     <div class="col-lg-12 form-floating" style="margin-right:0px">
     
-                      {{Form::text('attainmentDesc2', '', ['class' => 'form-control filled', 'placeholder' => 'Attainment', 'id' => 'floatingAddress'])}}
+                      {{Form::text('attainmentDesc2', NULL, ['class' => 'form-control filled', 'placeholder' => 'Attainment', 'id' => 'floatingAddress'])}}
                       <label for="floatingAddress">Description (Optional)</label>
                     </div>
                   </div>
@@ -322,12 +322,12 @@
                 <div class="col">
                   <div class="row g-2">
                     <div class="dropdown col-lg-3">
-                      {{Form::select('attainment3', ['' => 'Type', 'Secondary' => 'Secondary', 'Tertiary' => 'Tertiary', 'Vocational' => 'Vocational'],'', ['class' => 'form-select','type' => 'button', 'style' => 'height: 58px'])}}
+                      {{Form::select('attainment3', [NULL => 'Type', 'Secondary' => 'Secondary', 'Tertiary' => 'Tertiary', 'Vocational' => 'Vocational'],NULL, ['class' => 'form-select','type' => 'button', 'style' => 'height: 58px'])}}
                     </div>
     
                     <div class="col-lg-5 form-floating" style="margin-right:0px">
     
-                      {{Form::text('attainmentTitle3', '', ['class' => 'form-control filled', 'placeholder' => 'Attainment', 'id' => 'floatingAddress'])}}
+                      {{Form::text('attainmentTitle3', NULL, ['class' => 'form-control filled', 'placeholder' => 'Attainment', 'id' => 'floatingAddress'])}}
                       <label for="floatingAddress">Attainment Title</label>
                     </div>
 
@@ -342,7 +342,7 @@
     
                     <div class="col-lg-12 form-floating" style="margin-right:0px">
     
-                      {{Form::text('attainmentDesc3', '', ['class' => 'form-control filled', 'placeholder' => 'Attainment', 'id' => 'floatingAddress'])}}
+                      {{Form::text('attainmentDesc3', NULL, ['class' => 'form-control filled', 'placeholder' => 'Attainment', 'id' => 'floatingAddress'])}}
                       <label for="floatingAddress">Description (Optional)</label>
                     </div>
                   </div>
@@ -363,7 +363,7 @@
 
                   <div class="col-xl-4 form-floating">
 
-                    {{Form::number('company_id', '', ['class' => 'form-control filled', 'placeholder' => 'Company ID', 'id' => 'floatingFirst','required'])}}
+                    {{Form::number('company_id', NULL, ['class' => 'form-control filled', 'placeholder' => 'Company ID', 'id' => 'floatingFirst','required'])}}
                     <label for="floatingFirst">Company ID</label>
                   </div>
 
@@ -398,7 +398,7 @@
                 </div>
 
                 <div class="dropdown col-lg-4">
-                  {{Form::select('empStatus', $statuses->pluck('type'),'', ['class' => 'form-select', 'placeholder' => '---','type' => 'button', 'style' => 'height: 58px','required'])}}
+                  {{Form::select('empStatus', $statuses->pluck('type'),NULL, ['class' => 'form-select', 'placeholder' => '---','type' => 'button', 'style' => 'height: 58px','required'])}}
                 </div>
 
               </div>
@@ -412,7 +412,7 @@
                 </div>
 
                 <div class="dropdown col-lg-4">
-                  {{Form::select('branch', $branches->pluck('name'),'', ['class' => 'form-select', 'placeholder' => '---','type' => 'button', 'style' => 'height: 58px','required'])}}
+                  {{Form::select('branch', $branches->pluck('name'),NULL, ['class' => 'form-select', 'placeholder' => '---','type' => 'button', 'style' => 'height: 58px','required'])}}
                 </div>
 
               </div>
@@ -426,7 +426,7 @@
                 </div>
 
                 <div class="dropdown col-lg-4">
-                  {{Form::select('department', $departments->pluck('name'),'', ['class' => 'form-select', 'placeholder' => '---','type' => 'button', 'style' => 'height: 58px', 'required'])}}
+                  {{Form::select('department', $departments->pluck('name'),NULL, ['class' => 'form-select', 'placeholder' => '---','type' => 'button', 'style' => 'height: 58px', 'required'])}}
                 </div>
 
               </div>
@@ -440,7 +440,7 @@
                 </div>
 
                 <div class="dropdown col-lg-3">
-                  {{Form::select('position1', $positions->pluck('name'),'', [
+                  {{Form::select('position1', $positions->pluck('name'),NULL, [
                             'class' => 'form-select',
                             'placeholder' => 'Primary Role',
                             'type' => 'button',
@@ -467,12 +467,12 @@
                 </div>
 
                 <div class="dropdown col-lg-4">
-                  {{Form::select('project', $departments->pluck('name'),'', ['class' => 'form-select', 'placeholder' => 'Project Title (Optional)','type' => 'button', 'style' => 'height: 58px'])}}
+                  {{Form::select('project', $departments->pluck('name'),NULL, ['class' => 'form-select', 'placeholder' => 'Project Title (Optional)','type' => 'button', 'style' => 'height: 58px'])}}
                 </div>
 
                 <div class="col-lg-6 form-floating" style="margin-right:0px">
 
-                  {{Form::text('location', '', ['class' => 'form-control filled', 'placeholder' => 'Project Location', 'id' => 'floatingAddress'])}}
+                  {{Form::text('location', NULL, ['class' => 'form-control filled', 'placeholder' => 'Project Location', 'id' => 'floatingAddress'])}}
                   <label for="floatingAddress">Project Location (Optional)</label>
                 </div>
 
@@ -491,7 +491,7 @@
                 <div class="col-sm input-group" style="height: 58px; max-width: 35vh">
 
                   <span class="input-group-text">Php</span>
-                  {{Form::number('current_rate', '', ['class' => 'form-control', 
+                  {{Form::number('current_rate', 0, ['class' => 'form-control', 
                                   'placeholder' => 'Amount',
                                   'style' => 'font-size: 18px',
                                   'required'])}}
@@ -512,7 +512,7 @@
                 <div class="col-sm input-group" style="height: 58px; max-width: 35vh">
 
                   <span class="input-group-text">Php</span>
-                  {{Form::number('previous_rate', '', ['class' => 'form-control', 
+                  {{Form::number('previous_rate', 0, ['class' => 'form-control', 
                                   'placeholder' => 'Amount (Optional)',
                                   'style' => 'font-size: 18px'])}}
                   <span class="input-group-text">.00</span>
@@ -532,7 +532,7 @@
                 <div class="col-sm input-group" style="height: 58px; max-width: 35vh">
 
                   <span class="input-group-text">Php</span>
-                  {{Form::number('previous_rate', '', ['class' => 'form-control', 
+                  {{Form::number('previous_rate', 0, ['class' => 'form-control', 
                                   'placeholder' => 'Amount (Optional)',
                                   'style' => 'font-size: 18px'])}}
                   <span class="input-group-text">.00</span>
@@ -552,7 +552,7 @@
                 <div class="col-sm input-group" style="height: 58px; max-width: 35vh">
 
                   <span class="input-group-text">Php</span>
-                  {{Form::number('allowance', '', ['class' => 'form-control', 
+                  {{Form::number('allowance', 0, ['class' => 'form-control', 
                                   'placeholder' => 'Amount (Optional)',
                                   'style' => 'font-size: 18px'])}}
                   <span class="input-group-text">.00</span>

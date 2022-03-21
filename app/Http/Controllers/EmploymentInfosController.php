@@ -53,8 +53,6 @@ class EmploymentInfosController extends Controller
         $empInfo->current_location = $request->input('location');
 
         $empInfo->save();
-
-
     }
 
     /**

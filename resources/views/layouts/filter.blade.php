@@ -1,4 +1,27 @@
+<div class="col-sm">
+    <input class="btn-check" type="checkbox" data-bs-toggle="collapse" id="btn-check-outlined" autocomplete="off" data-bs-target="#collapseFilter">
+    <label class="btn btn-outline-secondary" for="btn-check-outlined" style="margin-bottom: 10px">Filters</label><br>
+</div>
 
+<div class="col-md-3 justify-content-end">
+    <form action="{{ route('employees.index') }}" method="GET" role="search">
+
+        <div class="input-group">
+            <button class="btn bg-success" type="submit" title="Search employees">
+                <span class=""><img src="/assets/bootstrap-icons/search.svg" alt="View" width="100%" height="100%"></span>
+            </button>
+
+            <input type="text" class="form-control border-dark" name="term" placeholder="Search employees" id="term" style="margin-right:5px">
+
+            <a href="{{ route('employees.index') }}">
+                <button class="btn btn-danger border-dark" type="button" title="Refresh page">
+                    <span class=""><img src="/assets/bootstrap-icons/x-circle.svg" alt="View" width="100%" height="100%"></span>
+                </button>
+            </a>
+
+        </div>
+    </form>
+</div>
 
 <div class="collapsing" id="collapseFilter" style="font-size: 90%">
     <div class="card card-body">

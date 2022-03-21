@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Models\RateLog as ModelsRateLog;
 
 class RateLogsController extends Controller
 {
@@ -32,9 +34,23 @@ class RateLogsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public static function store(Request $request, $id)
     {
-        //
+        $rateLog = new ModelsRateLog();
+
+        $rateLog->emp_id = $id;
+        $rateLog->rate_from = 0;
+        $rateLog->rate_to = $request->input('current_rate');
+
+        $rateLog->date_changed = Carbon::now();
+
+        // $empInfo->position2 = isset($request['email']) ? $positions[$request->input('position2')]->name : NULL;
+        // $empInfo->position3 = isset($request['email']) ? $positions[$request->input('position3')]->name : NULL;
+        // $empInfo->status = $statuses[$request->input('empStatus')]->type;
+        // $empInfo->hired_on = $request->input('hired_on');
+        // $empInfo->current_location = $request->input('location');
+
+        $rateLog->save();
     }
 
     /**

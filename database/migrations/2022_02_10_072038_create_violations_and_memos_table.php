@@ -18,7 +18,7 @@ class CreateViolationsAndMemosTable extends Migration
             $table -> unsignedbigInteger('emp_id');
             $table -> foreign('emp_id')->references('id')->on('employees')->onDelete('cascade');
             $table -> string('type');
-            $table -> string('details');
+            $table -> string('details')->nullable();
             $table -> timestamps();
         });
     }

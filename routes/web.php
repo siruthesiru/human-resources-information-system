@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeesController;
+use App\Http\Controllers\FinancialRecordsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,4 +28,8 @@ Route::resources([
 
 Route::resources([
     'employees' => EmployeesController::class,
+]);
+
+Route::resources([
+    'financialRecords' => FinancialRecordsController::class,
 ]);

@@ -47,6 +47,8 @@ class FinancialRecordsController extends Controller
         $financialRec->allowance = $request->input('allowance');
 
         $financialRec->save();
+
+        RateLogsController::store($request , $id);
     }
 
     /**

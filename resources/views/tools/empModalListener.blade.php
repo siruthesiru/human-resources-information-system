@@ -1,16 +1,16 @@
 <script>
-    var myModal = document.getElementById('empAddModal')
-    var myInput = document.getElementById('myInput')
+    // var myModal = document.getElementById('empAddModal')
+    // var myInput = document.getElementById('myInput')
 
-    myModal.addEventListener('shown.bs.modal', function () {
-    myInput.focus()
-    })
+    // myModal.addEventListener('shown.bs.modal', function () {
+    // myInput.focus()
+    // })
 
-    jQuery(window).load(function(){
-        jQuery('#empAddModal').modal('show').on('hide.bs.modal', function(e){
-        e.preventDefault();
-        });
-    });
+    // jQuery(window).load(function(){
+    //     jQuery('#empAddModal').modal('show').on('hide.bs.modal', function(e){
+    //     e.preventDefault();
+    //     });
+    // });
     
     
     var empAddModal = document.getElementById('empAddModal')

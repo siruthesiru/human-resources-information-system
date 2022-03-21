@@ -47,25 +47,29 @@ class AttainmentsController extends Controller
 
         $attainment->save();
 
-        $attainment = new Attainment();
+        if($request->input('attainment2') != NULL){
+            $attainment = new Attainment();
         
-        $attainment->emp_id = $id;
-        $attainment->type = $request->input('attainment2');
-        $attainment->title = $request->input('attainmentTitle2');
-        $attainment->description = $request->input('attainmentDesc2');
-        $attainment->attained_on = $request->input('attained_on2');
+            $attainment->emp_id = $id;
+            $attainment->type = $request->input('attainment2');
+            $attainment->title = $request->input('attainmentTitle2');
+            $attainment->description = $request->input('attainmentDesc2');
+            $attainment->attained_on = $request->input('attained_on2');
 
-        $attainment->save();
+            $attainment->save();
+        }
 
-        $attainment = new Attainment();
+        if($request->input('attainment3') != NULL){
+            $attainment = new Attainment();
         
-        $attainment->emp_id = $id;
-        $attainment->type = $request->input('attainment3');
-        $attainment->title = $request->input('attainmentTitle3');
-        $attainment->description = $request->input('attainmentDesc3');
-        $attainment->attained_on = $request->input('attained_on3');
+            $attainment->emp_id = $id;
+            $attainment->type = $request->input('attainment3');
+            $attainment->title = $request->input('attainmentTitle3');
+            $attainment->description = $request->input('attainmentDesc3');
+            $attainment->attained_on = $request->input('attained_on3');
 
-        $attainment->save();
+            $attainment->save();
+        }
     }
 
     /**
