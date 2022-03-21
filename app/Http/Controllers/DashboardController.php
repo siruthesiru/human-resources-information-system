@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Employee;
 use App\Models\Employee as ModelsEmployee;
+use App\Models\Notification as ModelsNotification;
+
 use Illuminate\Support\Carbon;
 use PhpParser\Node\Expr\AssignOp\Concat;
 
@@ -34,7 +36,12 @@ class DashboardController extends Controller
             return $employee->lName.', '.$employee->fName.' on '.Carbon::parse($user_birthDate)->format('F').' '.$user_birthDay;
         }else{
         }
+    }
 
+    public static function showNotifications(){
+        $notifications = ModelsNotification::all()->orderby('created_date');
+
+        return $notifications;
     }
 
 }

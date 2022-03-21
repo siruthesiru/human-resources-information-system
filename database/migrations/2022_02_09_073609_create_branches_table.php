@@ -13,13 +13,15 @@ class CreateBranchesTable extends Migration
      */
     public function up()
     {
-        Schema::create('branches', function (Blueprint $table) {
-            $table -> id();
-            $table -> string('name');
-            $table -> mediumText('description');
-            $table -> mediumText('location');
-            $table -> timestamps();
-        });
+        if (!Schema::hasTable('branches')) {
+            Schema::create('branches', function (Blueprint $table) {
+                $table -> id();
+                $table -> string('name');
+                $table -> mediumText('description')->nullable();
+                $table -> mediumText('location')->nullable();
+                $table -> timestamps();
+            });
+         }
     }
 
     /**
@@ -29,6 +31,6 @@ class CreateBranchesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('branches');
+        // Schema::dropIfExists('branches');
     }
 }

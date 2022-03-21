@@ -18,8 +18,8 @@ class CreateChangeLogsTable extends Migration
             $table -> unsignedbigInteger('emp_id');
             $table -> foreign('emp_id')->references('id')->on('employees')->onDelete('cascade');
             $table -> integer('type');
-            $table -> string('title');
-            $table -> mediumText('description');
+            $table -> string('title')->nullable();
+            $table -> mediumText('description')->nullable();
             $table -> timestamps();
         });
     }

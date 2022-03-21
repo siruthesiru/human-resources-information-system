@@ -13,12 +13,14 @@ class CreateEmploymentStatusesTable extends Migration
      */
     public function up()
     {
-        Schema::create('employment_statuses', function (Blueprint $table) {
-            $table->id();
-            $table->string('type');
-            $table->mediumText('description');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('employment_statuses')) {
+            Schema::create('employment_statuses', function (Blueprint $table) {
+                $table->id();
+                $table->string('type');
+                $table->mediumText('description')->nullable;
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -28,6 +30,6 @@ class CreateEmploymentStatusesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employment_statuses');
+        // Schema::dropIfExists('employment_statuses');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Notification as ModelsNotification;
 
 class NotificationsController extends Controller
 {
@@ -34,7 +35,18 @@ class NotificationsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $empInfo = new ModelsNotification();
+
+        $empInfo->emp_id = $id;
+        $empInfo->company_id = $request->input('company_id');
+        $empInfo->position1 = $positions[$request->input('position1')]->name;
+        $empInfo->position2 = isset($request['email']) ? $positions[$request->input('position2')]->name : NULL;
+        $empInfo->position3 = isset($request['email']) ? $positions[$request->input('position3')]->name : NULL;
+        $empInfo->status = $statuses[$request->input('empStatus')]->type;
+        $empInfo->hired_on = $request->input('hired_on');
+        $empInfo->current_location = $request->input('location');
+
+        $empInfo->save();
     }
 
     /**
