@@ -7,11 +7,19 @@
     }
 
     label{
-      color: black;
+      color: gray;
     }
 
     .hidden{
       display:none;
+    }
+
+    .sticky-div {
+        background: white;
+        position: sticky;
+        top: 0;
+        padding: 10px 0;
+        z-index: 10;
     }
 
 </style>
@@ -32,12 +40,12 @@
         </div>
 
         <div class="modal-body">
-          
+
 
           <div class="row">
-            
+
             <div class="col-xl-1"></div>
-            
+
 
             <div class="col-xl">
 
@@ -48,36 +56,36 @@
                 <div class="col-xl-2 d-flex align-items-center" style="vertical-align: middle">
                   <h6>Profile Picture</h6>
                 </div>
-            
+
                   <div class="col-xl-3 col-centered">
-                    
-                    <div class="row">                            
+
+                    <div class="row">
                       <p class="p-1 border bg-light" style="height:228px; width:228px; margin-left:10px;" id="surroundImage">
-      
-                        <img class="img-fluid img-thumbnail hidden" id="frame" src="" style="width:228px; max-height:228px;"/>
-      
-                      </p>      
+
+                        <img class="img-fluid img-thumbnail hidden" id="frame" src="" style="width:228px; max-height:228px;" alt="Employee's profile picture"/>
+
+                      </p>
                     </div>
-      
-                    <div class="row">    
+
+                    <div class="row">
                       <p>
-      
+
                         <input type="file" onchange="preview()" name="profilePicSrc">
-      
-                      </p>      
+
+                      </p>
                     </div>
-      
+
                   </div>
 
                   <br>
                   <hr>
                   <br>
-                  
+
               </div>
 
               <br>
 
-              <div class="row g-2">
+              <div class="row g-2 sticky-div">
 
                 <div class="col-xl-2 d-flex align-items-center" style="vertical-align: middle">
                   <h6>Full Name</h6>
@@ -141,11 +149,11 @@
 
                 <div class="col-lg-3">
 
-                    {{Form::date('bDate', 'Birthday', ['class' => 'form-control', 
-                                  'placeholder' => 'Birthday', 
-                                  'data-bs-toggle' => 'tooltip', 
-                                  'data-bs-placement' => 'left', 
-                                  'id' => 'bDay', 'required', 
+                    {{Form::date('bDate', 'Birthday', ['class' => 'form-control',
+                                  'placeholder' => 'Birthday',
+                                  'data-bs-toggle' => 'tooltip',
+                                  'data-bs-placement' => 'left',
+                                  'id' => 'bDay', 'required',
                                   'style' => 'height: 58px; border-radius: 5px;'])}}
                 </div>
 
@@ -162,9 +170,9 @@
                 <div class="col-lg-2" style="max-height: 58px;">
 
                   <div class="dropdown">
-                    {{Form::select('sex', [NULL => '---', 'M' => 'Male', 'F' => 'Female'], 0, ['class' => 'form-select', 
-                                    'type' => 'button', 
-                                    'style' => 'height: 58px', 
+                    {{Form::select('sex', [NULL => '---', 'M' => 'Male', 'F' => 'Female'], 0, ['class' => 'form-select',
+                                    'type' => 'button',
+                                    'style' => 'height: 58px',
                                     'required'])}}
                   </div>
 
@@ -183,9 +191,9 @@
                 <div class="col-lg input-group" style="height: 58px">
 
                   <span class="input-group-text">+63</span>
-                  {{Form::number('contactNum1', NULL, ['class' => 'form-control', 
+                  {{Form::number('contactNum1', NULL, ['class' => 'form-control',
                                   'placeholder' => 'Primary Contact #',
-                                  'aria-describedby' => 'countryCode', 
+                                  'aria-describedby' => 'countryCode',
                                   'style' => 'font-size: 18px',
                                   'maxlength' => '10', 'required'])}}
 
@@ -194,10 +202,10 @@
                 <div class="col-lg input-group" style="height: 58px">
 
                   <span class="input-group-text">+63</span>
-                  {{Form::number('contactNum2', NULL, ['class' => 'form-control', 
+                  {{Form::number('contactNum2', NULL, ['class' => 'form-control',
                                   'placeholder' => 'Secondary Contact # (Optional)',
-                                  'aria-describedby' => 'countryCode', 
-                                  'style' => 'font-size: 18px', 
+                                  'aria-describedby' => 'countryCode',
+                                  'style' => 'font-size: 18px',
                                   'maxlength' => '10'])}}
 
                 </div>
@@ -220,14 +228,14 @@
                 <div class="col-lg input-group" style="height: 58px">
 
                   <span class="input-group-text">+63</span>
-                  {{Form::number('emergencyContactNum', NULL, ['class' => 'form-control', 
+                  {{Form::number('emergencyContactNum', NULL, ['class' => 'form-control',
                                   'placeholder' => 'Emergency Contact #',
-                                  'aria-describedby' => 'countryCode', 
+                                  'aria-describedby' => 'countryCode',
                                   'style' => 'font-size: 18px',
                                   'maxlength' => '10'])}}
 
                 </div>
-                
+
               </div>
 
               <br>
@@ -244,9 +252,9 @@
                     <div class="dropdown col-lg-3">
                       {{Form::select('attainment1', [NULL => 'Type', 'Secondary' => 'Secondary', 'Tertiary' => 'Tertiary', 'Vocational' => 'Vocational'],NULL, ['class' => 'form-select','type' => 'button', 'style' => 'height: 58px'])}}
                     </div>
-    
-                    <div class="col-lg-5 form-floating" style="margin-right:0px">
-    
+
+                    <div class="col-lg-5 form-floating" style="margin-right:0">
+
                       {{Form::text('attainmentTitle1', NULL, ['class' => 'form-control filled', 'placeholder' => 'Attainment', 'id' => 'floatingAddress'])}}
                       <label for="floatingAddress">Attainment Title</label>
                     </div>
@@ -257,19 +265,19 @@
                       <div class="row-auto">
                         {{Form::date('attained_on1', 'Date Attained', ['class' => 'form-control', 'data-bs-toggle' => 'tooltip', 'data-bs-placement' => 'left', 'id' => 'attained_on', 'style' => 'border: none;'])}}
                       </div>
-    
+
                     </div>
-    
-                    <div class="col-lg-12 form-floating" style="margin-right:0px">
-    
+
+                    <div class="col-lg-12 form-floating" style="margin-right:0">
+
                       {{Form::text('attainmentDesc1', NULL, ['class' => 'form-control filled', 'placeholder' => 'Attainment', 'id' => 'floatingAddress'])}}
                       <label for="floatingAddress">Description (Optional)</label>
                     </div>
                   </div>
-                </div>                
+                </div>
 
               </div>
-              
+
               <br>
               <br>
 
@@ -284,9 +292,9 @@
                     <div class="dropdown col-lg-3">
                       {{Form::select('attainment2', [NULL => 'Type', 'Secondary' => 'Secondary', 'Tertiary' => 'Tertiary', 'Vocational' => 'Vocational'],NULL, ['class' => 'form-select','type' => 'button', 'style' => 'height: 58px'])}}
                     </div>
-    
-                    <div class="col-lg-5 form-floating" style="margin-right:0px">
-    
+
+                    <div class="col-lg-5 form-floating" style="margin-right:0">
+
                       {{Form::text('attainmentTitle2', NULL, ['class' => 'form-control filled', 'placeholder' => 'Attainment', 'id' => 'floatingAddress'])}}
                       <label for="floatingAddress">Attainment Title</label>
                     </div>
@@ -297,19 +305,19 @@
                       <div class="row-auto">
                         {{Form::date('attained_on2', 'Date Attained', ['class' => 'form-control', 'data-bs-toggle' => 'tooltip', 'data-bs-placement' => 'left', 'id' => 'attained_on', 'style' => 'border: none;'])}}
                       </div>
-    
+
                     </div>
-    
-                    <div class="col-lg-12 form-floating" style="margin-right:0px">
-    
+
+                    <div class="col-lg-12 form-floating" style="margin-right:0">
+
                       {{Form::text('attainmentDesc2', NULL, ['class' => 'form-control filled', 'placeholder' => 'Attainment', 'id' => 'floatingAddress'])}}
                       <label for="floatingAddress">Description (Optional)</label>
                     </div>
                   </div>
-                </div>                
+                </div>
 
               </div>
-              
+
               <br>
               <br>
 
@@ -324,9 +332,9 @@
                     <div class="dropdown col-lg-3">
                       {{Form::select('attainment3', [NULL => 'Type', 'Secondary' => 'Secondary', 'Tertiary' => 'Tertiary', 'Vocational' => 'Vocational'],NULL, ['class' => 'form-select','type' => 'button', 'style' => 'height: 58px'])}}
                     </div>
-    
-                    <div class="col-lg-5 form-floating" style="margin-right:0px">
-    
+
+                    <div class="col-lg-5 form-floating" style="margin-right:0">
+
                       {{Form::text('attainmentTitle3', NULL, ['class' => 'form-control filled', 'placeholder' => 'Attainment', 'id' => 'floatingAddress'])}}
                       <label for="floatingAddress">Attainment Title</label>
                     </div>
@@ -337,16 +345,16 @@
                       <div class="row-auto">
                         {{Form::date('attained_on3', 'Date Attained', ['class' => 'form-control', 'data-bs-toggle' => 'tooltip', 'data-bs-placement' => 'left', 'id' => 'attained_on', 'style' => 'border: none;'])}}
                       </div>
-    
+
                     </div>
-    
-                    <div class="col-lg-12 form-floating" style="margin-right:0px">
-    
+
+                    <div class="col-lg-12 form-floating" style="margin-right:0">
+
                       {{Form::text('attainmentDesc3', NULL, ['class' => 'form-control filled', 'placeholder' => 'Attainment', 'id' => 'floatingAddress'])}}
                       <label for="floatingAddress">Description (Optional)</label>
                     </div>
                   </div>
-                </div>                
+                </div>
 
               </div>
 
@@ -372,20 +380,20 @@
                 <br>
 
               <div class="row g-2">
-                
+
                 <div class="col-xl-2 d-flex align-items-center" style="vertical-align: middle">
                   <h6>Date Hired</h6>
                 </div>
-    
+
                   <div class="col-lg-3">
 
                       {{Form::date('hired_on', 'Date Hired', ['class' => 'form-control',
-                                    'data-bs-toggle' => 'tooltip', 
-                                    'data-bs-placement' => 'left', 
-                                    'id' => 'hired_on', 'required', 
+                                    'data-bs-toggle' => 'tooltip',
+                                    'data-bs-placement' => 'left',
+                                    'id' => 'hired_on', 'required',
                                     'style' => 'height: 58px; border-radius: 5px;'])}}
                   </div>
-    
+
 
               </div>
 
@@ -436,13 +444,13 @@
               <div class="row g-2">
 
                 <div class="col-xl-2 d-flex align-items-center" style="vertical-align: middle">
-                  <h6>Assigned Role</h6>
+                  <h6>Assigned Position</h6>
                 </div>
 
                 <div class="dropdown col-lg-3">
                   {{Form::select('position1', $positions->pluck('name'),NULL, [
                             'class' => 'form-select',
-                            'placeholder' => 'Primary Role',
+                            'placeholder' => 'Primary Position',
                             'type' => 'button',
                             'style' => 'height: 58px',
                             'required'
@@ -450,11 +458,11 @@
                 </div>
 
                 <div class="dropdown col-lg-3">
-                  {{Form::select('position2', $positions->pluck('name'), NULL, ['class' => 'form-select', 'placeholder' => 'Other Role (optional)','type' => 'button', 'style' => 'height: 58px'])}}
+                  {{Form::select('position2', $positions->pluck('name'), NULL, ['class' => 'form-select', 'placeholder' => 'Other Positions (optional)','type' => 'button', 'style' => 'height: 58px'])}}
                 </div>
 
                 <div class="dropdown col-lg-3">
-                  {{Form::select('position3', $positions->pluck('name'), NULL, ['class' => 'form-select', 'placeholder' => 'Other Role (optional)','type' => 'button', 'style' => 'height: 58px'])}}
+                  {{Form::select('position3', $positions->pluck('name'), NULL, ['class' => 'form-select', 'placeholder' => 'Other Positions (optional)','type' => 'button', 'style' => 'height: 58px'])}}
                 </div>
               </div>
 
@@ -470,7 +478,7 @@
                   {{Form::select('project', $departments->pluck('name'),NULL, ['class' => 'form-select', 'placeholder' => 'Project Title (Optional)','type' => 'button', 'style' => 'height: 58px'])}}
                 </div>
 
-                <div class="col-lg-6 form-floating" style="margin-right:0px">
+                <div class="col-lg-6 form-floating" style="margin-right:0">
 
                   {{Form::text('location', NULL, ['class' => 'form-control filled', 'placeholder' => 'Project Location', 'id' => 'floatingAddress'])}}
                   <label for="floatingAddress">Project Location (Optional)</label>
@@ -491,7 +499,7 @@
                 <div class="col-sm input-group" style="height: 58px; max-width: 35vh">
 
                   <span class="input-group-text">Php</span>
-                  {{Form::number('current_rate', 0, ['class' => 'form-control', 
+                  {{Form::number('current_rate', 0, ['class' => 'form-control',
                                   'placeholder' => 'Amount',
                                   'style' => 'font-size: 18px',
                                   'required'])}}
@@ -512,7 +520,7 @@
                 <div class="col-sm input-group" style="height: 58px; max-width: 35vh">
 
                   <span class="input-group-text">Php</span>
-                  {{Form::number('previous_rate', 0, ['class' => 'form-control', 
+                  {{Form::number('previous_rate', 0, ['class' => 'form-control',
                                   'placeholder' => 'Amount (Optional)',
                                   'style' => 'font-size: 18px'])}}
                   <span class="input-group-text">.00</span>
@@ -532,7 +540,7 @@
                 <div class="col-sm input-group" style="height: 58px; max-width: 35vh">
 
                   <span class="input-group-text">Php</span>
-                  {{Form::number('previous_rate', 0, ['class' => 'form-control', 
+                  {{Form::number('previous_rate', 0, ['class' => 'form-control',
                                   'placeholder' => 'Amount (Optional)',
                                   'style' => 'font-size: 18px'])}}
                   <span class="input-group-text">.00</span>
@@ -552,7 +560,7 @@
                 <div class="col-sm input-group" style="height: 58px; max-width: 35vh">
 
                   <span class="input-group-text">Php</span>
-                  {{Form::number('allowance', 0, ['class' => 'form-control', 
+                  {{Form::number('allowance', 0, ['class' => 'form-control',
                                   'placeholder' => 'Amount (Optional)',
                                   'style' => 'font-size: 18px'])}}
                   <span class="input-group-text">.00</span>
@@ -566,27 +574,27 @@
 
 
               {{-- <div class="container1">
-                <button class="add_form_field">Add New Field &nbsp; 
+                <button class="add_form_field">Add New Field &nbsp;
                   <span style="font-size:16px; font-weight:bold;">+ </span>
                 </button>
                 <div><input type="text" name="mytext[]"></div>
               </div> --}}
 
-              
+
 
             </div>
 
-            <div class="col-xl-1"></div>    
+            <div class="col-xl-1"></div>
 
           </div>
 
 
           {{-- END OF MODAL BODY --}}
 
-          <input name="change_type" value="1" class="hidden"/>
+            <label>
+                <input name="change_type" value="1" class="hidden"/>
+            </label>
 
-
-          
 
         </div>
 

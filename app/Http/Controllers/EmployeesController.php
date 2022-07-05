@@ -11,12 +11,16 @@ use App\Models\Branch as ModelsBranch;
 use Illuminate\Support\Facades\Storage;
 use PhpParser\Node\Expr\AssignOp\Concat;
 
+use Illuminate\Support\Facades\Response;
+use App\Images;
+use Image;
+
 class EmployeesController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function index(Request $request)
     {
@@ -26,7 +30,7 @@ class EmployeesController extends Controller
             $employees = ModelsEmployee::where([
                 ['id', '!=', NULL],
                 [function($query) use ($request) {
-    
+
                     if ($term = $request->term) {
                         $query->orWhere('fName', 'LIKE', '%'.$term.'%')->get();
                         $query->orWhere('lName', 'LIKE', '%'.$term.'%')->get();
@@ -39,29 +43,16 @@ class EmployeesController extends Controller
                 ->paginate(25);
         }
 
-        
-
         // dd($employees);
 
         return view('employees.index')->with('employees', $employees);
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-    public function add()
-    {
-        
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
 
     public function store(Request $request)
@@ -85,15 +76,15 @@ class EmployeesController extends Controller
         $departments = ModelsDepartment::all();
         $branches = ModelsBranch::all();
 
-        if ($request->hasFile('photo')) {
-            $image      = $request->file('photo');
-            $fileName   = time() . '.' . $image->getClientOriginalExtension();
-
-            $img = $image->getRealPath();
-
-            dd();
-            Storage::disk('local')->put('images/1/smalls'.'/'.$fileName, $img, 'public');
-        }
+//        if ($request->hasFile('photo')) {
+//            $image      = $request->file('photo');
+//            $fileName   = time() . '.' . $image->getClientOriginalExtension();
+//
+//            $img = $image->getRealPath();
+//
+//            dd();
+//            Storage::disk('local')->put('images/1/smalls'.'/'.$fileName, $img, 'public');
+//        }
 
         $employee = new ModelsEmployee;
 
@@ -107,7 +98,7 @@ class EmployeesController extends Controller
         $employee->province = $request->input('province');
         $employee->contactNum1 = $request->input('contactNum1');
         $employee->contactNum2 = $request->input('contactNum2');
-        $employee->profilePicSrc = NULL;
+        $employee->profilePicSrc = $request->input('profilePicSrc');
         $employee->department = $departments[$request->input('department')]->name;
         $employee->branch = $branches[$request->input('branch')]->name;
 
@@ -128,33 +119,11 @@ class EmployeesController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
 
     public function update(Request $request, $id)
@@ -176,7 +145,7 @@ class EmployeesController extends Controller
         $employee->address = $request->input('address');
         $employee->contactNum1 = $request->input('contactNum1');
         $employee->contactNum2 = $request->input('contactNum2');
-        $employee->profilePicSrc = NULL;
+        $employee->profilePicSrc = $request->input('profilePicSrc');
 
         $employee->save();
 
@@ -189,8 +158,44 @@ class EmployeesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
+//    public function destroy($id)
+//    {
+//        //
+//    }
+
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+//    public function add()
+//    {
+//
+//    }
+
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+//    public function edit($id)
+//    {
+//        //
+//    }
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+//    public function show($id)
+//    {
+//
+//    }
 }
