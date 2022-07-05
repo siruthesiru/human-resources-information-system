@@ -1,7 +1,7 @@
-<p style="text-align: center"><a href="https://laravel.com" target="_blank"><img src="public/images/plas.png" width="282" alt="PLAS Logo"></a></p>
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="public/images/plas.png" width="282" alt="PLAS Logo"></a></p>
 
 
-<p style="text-align: center">
+<p align="center">
 <a style="font-weight:bold; color:white; font-size: 20px">HUMAN RESOURCES</a><br>
 <a href="https://www.npmjs.com/"><img src="https://img.shields.io/npm/v/npm" alt="NPM version"></a>
 <a href="https://www.php.net/"><img src="https://img.shields.io/badge/php-v8.1-blue" alt="PHP version"></a>
