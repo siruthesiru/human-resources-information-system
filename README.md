@@ -21,8 +21,6 @@ The project is still under development but is expected to have the following fea
 
 To view the project's progress, check the repository's **Projects** tab or click on [this link](https://github.com/siruthesiru/HRDB/projects/1).
 
-<hr>
-
 ## Deployment
 
 <p style="color:darkorange; font-weight: bold">NOTE: As the project is still in development, Docker deployment is still unavailabe.</p>
@@ -47,8 +45,6 @@ Do the following steps to deploy/run the project:
 14. Run `php artisan migrate`
 15. Run `php artisan serve`
 
-<br>
-
 ### Linux
 
 1. Open a terminal and install the following packages as root: `php composer npm `
@@ -66,21 +62,16 @@ Do the following steps to deploy/run the project:
 
 *Optional: Install dbeaver-ce for MySQL interface*
 
-<br>
-
 ### MacOS
 <p style="color:lightgray; font-style: italic">Can't really afford any Apple products so...</p>
 
-<hr>
 
 ## Security Vulnerabilities
 
 If you discover a security vulnerability within Laravel, please send an e-mail to Gerald Silverio via `silveriogerald@gmail.com`. All security vulnerabilities will be promptly addressed.
 
-<hr>
 
 ## License
 
 As the project is being developed specifically for the use of PLAS Enterprises and Engineering Services, it is under a propriety license.
 
-<hr>
