@@ -1,4 +1,4 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="public/images/plas.png" width="282" alt="PLAS Logo"></a></p>
+<p align="center"><a href="https://www.facebook.com/Plas-Enterprises-and-Engineering-Services-246833312013059/"><img src="public/images/plas.png" width="282" alt="PLAS Logo"></a></p>
 
 
 <p align="center">
