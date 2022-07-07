@@ -61,7 +61,7 @@ Do the following steps to deploy/run the project:
 
 ## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Gerald Silverio via `sirutonin@gmail.com`. All security vulnerabilities will be promptly addressed.
+If you discover a security vulnerability within Laravel, please send an e-mail to Siru Tonin via `sirutonin@gmail.com`. All security vulnerabilities will be promptly addressed.
 
 <hr>
 
