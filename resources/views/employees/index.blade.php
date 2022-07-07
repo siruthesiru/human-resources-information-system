@@ -16,16 +16,16 @@
     @endphp
 
     <div class="row g-3">
-       
+
         <h1 class="bold">EMPLOYEES</h1>
-        <h6>Displaying all employees of PLAS Engineering and Enterprises</h6>
-        
+        <h6>Displaying all employees of the company.</h6>
+
         <hr>
 
         <div class="col-sm-auto">
             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#empAddModal" style="margin-bottom: 10px;">Add New Employee</button>
         </div>
-        
+
         @include('layouts.filter')
 
     </div>
@@ -37,9 +37,9 @@
     <div class="table-responsive">
         <table class="table table-bordered table-hover text-nowrap" id="sortTable" style="vertical-align: middle">
             <thead class="table-dark" style="font-size: 90%">
-                
+
                 <tr>
-                    
+
                     <th>ID #</th>
                     <th>Last Name</th>
                     <th>First Name</th>
@@ -54,8 +54,8 @@
             </thead>
             <tbody>
 
-                
-                
+
+
                 @if(count($employees) > 0)
 
                     @foreach($employees as $employee)
@@ -71,30 +71,30 @@
                             <td>{{$employee->contactNum1}}</td>
 
                             <td class="align-middle">
-                                <button type="button" class="btn btn-outline-dark btn-light" data-bs-toggle="modal" data-bs-target="#empViewModal_{{$employee->id}}" style="font-size:75%; margin-right: 5px"><img src="/assets/bootstrap-icons/eye-fill.svg" alt="View" width="100%" height="100%"></i>
+                                <button type="button" class="btn btn-outline-dark btn-light" data-bs-toggle="modal" data-bs-target="#empViewModal_{{$employee->id}}" style="font-size:75%; margin-right: 5px"><img src="public/assets/bootstrap-icons/eye-fill.svg" alt="View" width="100%" height="100%">
                                 </button>
-                                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#empEditModal_{{$employee->id}}" style="font-size:75%"><img src="/assets/bootstrap-icons/pencil-square.svg" alt="View" width="100%" height="100%"></button>
-                                
+                                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#empEditModal_{{$employee->id}}" style="font-size:75%"><img src="public/assets/bootstrap-icons/pencil-square.svg" alt="View" width="100%" height="100%"></button>
+
                                 @include('employees.empViewModal')
                                 @include('employees.empEditModal')
 
                                 {{-- <button type="button" class="btn btn-danger" style="font-size:75%">Delete</button> --}}
                             </td>
-                        
+
                         </tr>
-                        
+
                     @endforeach
                     {{$employees->links()}}
-                    
-                    
+
+
                 @endif
-                            
-                
+
+
             </tbody>
         </table>
     </div>
 </div>
-    
+
     @include('tools.empModalListener')
 
 @endsection

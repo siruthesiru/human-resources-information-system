@@ -1,16 +1,6 @@
-<p style="text-align: center"><a href="https://laravel.com" target="_blank"><img src="public/images/plas.png" width="282" alt="PLAS Logo"></a></p>
+# Human Resources Management System
 
-
-<p style="text-align: center">
-<a style="font-weight:bold; color:white; font-size: 20px">HUMAN RESOURCES</a><br>
-<a href="https://www.npmjs.com/"><img src="https://img.shields.io/npm/v/npm" alt="NPM version"></a>
-<a href="https://www.php.net/"><img src="https://img.shields.io/badge/php-v8.1-blue" alt="PHP version"></a>
-<a href="https://www.getcomposer.org/"><img src="https://img.shields.io/badge/composer-v2.3.8-blue" alt="Composer version"></a> 
-</p>
-
-# PLAS Human Resources Management System
-
-This information system is only meant for use in PLAS Enterprises & Engineering Services's business processes.
+This information system is meant for use in human resources specific business processes.
 The project is still under development but is expected to have the following features:
 - Full CRUD (Create, Read, Update, Delete) functionality for employee information
 - Automatic calculations for changes in rates
@@ -75,12 +65,11 @@ Do the following steps to deploy/run the project:
 
 ## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Gerald Silverio via `silveriogerald@gmail.com`. All security vulnerabilities will be promptly addressed.
+If you discover a security vulnerability within Laravel, please send an e-mail to Gerald Silverio via `sirutonin@gmail.com`. All security vulnerabilities will be promptly addressed.
 
 <hr>
 
 ## License
 
-As the project is being developed specifically for the use of PLAS Enterprises and Engineering Services, it is under a propriety license.
-
+This project is open-source and is therefore available under the **[MIT License](https://choosealicense.com/licenses/mit/)**.
 <hr>
