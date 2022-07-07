@@ -37,8 +37,6 @@ Do the following steps to deploy/run the project:
 14. Run `php artisan migrate`
 15. Run `php artisan serve`
 
-<br>
-
 ### Linux
 
 1. Open a terminal and install the following packages as root: `php composer npm `
@@ -55,8 +53,6 @@ Do the following steps to deploy/run the project:
 12. Run `php artisan serve`
 
 *Optional: Install dbeaver-ce for MySQL interface*
-
-<br>
 
 ### MacOS
 <p style="color:lightgray; font-style: italic">Can't really afford any Apple products so...</p>
